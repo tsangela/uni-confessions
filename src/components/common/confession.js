@@ -32,7 +32,7 @@ class Confession extends React.Component {
     return (
       <div className={`delete-container${deleting ? ' deleting' : ''}`} onClick={() => this.handleSelect(id)}>
         <Message id={id}>
-          <span id={`${id}_delete`} className='delete' onClick={() => this.handleDelete(id)}>x</span>
+          <span id={`${id}_delete`} className='delete' onClick={() => this.handleDelete(id)}>-</span>
           <span className='message-name'>{name}</span>
           <span className='message-age'>{age}</span>
           <div className='message-date'>{date}</div>

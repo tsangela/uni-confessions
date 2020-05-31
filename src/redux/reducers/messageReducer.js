@@ -37,6 +37,11 @@ const messageReducer = (state = initialState, action) => {
       const { selectedId, ...rest } = state;
       return { selectedId: action.id, ...rest };
 
+    case messageTypes.DESELECT_MESSAGE:
+      // reset selected message
+      console.log('got here with ', state, action);
+      return { selectedId: null, messages: state.messages };
+
     case messageTypes.CLEAR_BOARD:
       // set messages to empty list
       return { messages: [] };

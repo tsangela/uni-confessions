@@ -43,6 +43,9 @@ button {
   position: fixed;
   top: 0;
 
+  background: linear-gradient(to right top, #f2617c, #f0b299) no-repeat fixed;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.15);
+
   -webkit-transition: 0.2s ease;
   -moz-transition: 0.2s ease;
   -ms-transition: 0.2s ease;
@@ -75,12 +78,6 @@ button {
 .nav-button:hover {
   background-color: white;
   color: #e29779;
-}
-
-.nav-scroll {
-  background: linear-gradient(to right top, #f2617c, #f0b299) no-repeat fixed;
-  /* background: rgba(255, 255, 255, 0.25); */
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.15);
 }
 
 .nav-hover:hover {
@@ -172,6 +169,10 @@ button {
     align-items: stretch;
   }
 
+  .dialog-container {
+    align-items: center;
+  }
+
   .nav {
     padding-left: 15px;
     justify-content: flex-start;
@@ -180,6 +181,103 @@ button {
   .nav-button {
     font-size: large;
   }
+}
+
+/*
+dialog
+*/
+
+.dialog-overlay {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+
+  background: rgba(0, 0, 0, 0.4);
+  z-index: -1;
+}
+
+.dialog-container {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+
+  z-index: 1;
+}
+
+@keyframes zoomFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.dialog {
+  max-height: 50%;
+  overflow: scroll;
+  border-top: 30px solid #94a89a;
+  box-shadow: 2px 2px 22px rgba(0, 0, 0, 0.2);
+
+  animation: 0.3s zoomFadeIn;
+}
+
+.delete-container .close {
+  position: absolute;
+  z-index: 1;
+  top: 5px;
+  right: 5px;
+
+  text-align: center;
+  padding: 3px 5px;
+  border-radius: 100px;
+  font-size: x-small;
+
+  color: #d94560;
+  border: 1px solid #d94560;
+
+  visibility: hidden;
+  opacity: 0;
+  transform: scale(0.01);
+
+  -webkit-transition: 0.2s ease;
+  -moz-transition: 0.2s ease;
+  -ms-transition: 0.2s ease;
+  -o-transition: 0.2s ease;
+  transition: 0.2s ease;
+}
+
+.delete-container:hover .close {
+  visibility: visible;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.close:hover {
+  cursor: pointer;
+  background: #d94560;
+  color: #fff;
+}
+
+.clipboard {
+  margin-left: 10px;
+  cursor: pointer;
+
+  opacity: 0.4;
+
+  -webkit-transition: 0.2s ease;
+  -moz-transition: 0.2s ease;
+  -ms-transition: 0.2s ease;
+  -o-transition: 0.2s ease;
+  transition: 0.2s ease;
+}
+
+.clipboard:hover {
+  opacity: 1;
 }
 
 /*
@@ -419,6 +517,7 @@ select {
 /*
 about message
 */
+
 .message-about {
   font-size: medium;
   cursor: crosshair;

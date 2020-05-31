@@ -21,6 +21,12 @@ export const selectMessage = id => {
   }
 }
 
+export const deselectMessage = () => {
+  return {
+    type: messageTypes.DESELECT_MESSAGE,
+  }
+}
+
 export const clearBoard = () => {
   return {
     type: messageTypes.CLEAR_BOARD,
