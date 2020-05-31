@@ -12,7 +12,7 @@ const DEFAULT_STATE = {
 class Form extends React.Component {
   constructor(props) {
     super(props);
-    this.ref = React.createRef();
+    this.form = React.createRef();
     this.state = { 
       name: '',
       age: NO_AGE,
@@ -22,7 +22,7 @@ class Form extends React.Component {
   
   clearForm = () => {
     this.setState(DEFAULT_STATE);
-    this.ref.reset();
+    this.form.reset();
   }
 
   handleChange = event => {
@@ -58,7 +58,7 @@ class Form extends React.Component {
     return (
       <div id='modal-form' className='modal'>
         <h1>tell me a secret</h1>
-          <form ref={el => this.ref = el} id='confession-form'>
+          <form ref={ref => this.form = ref} id='confession-form'>
             <div className='form-inline'>
               <div id='form-name' className='form-group'>
                 <label htmlFor='name'>name</label>
