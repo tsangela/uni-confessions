@@ -70,7 +70,8 @@ a {
 }
 
 .nav-scroll {
-    background: #94A89A;
+    background: linear-gradient(to right top, #f2617c, #f0b299) no-repeat fixed;
+    /* background: rgba(255, 255, 255, 0.25); */
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.15);
 }
 

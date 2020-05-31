@@ -8,7 +8,7 @@ class NavButton extends React.Component {
     const name = getName(path);
     return (
       <NavLink to={path} role='button'>
-        <span id={path} class='nav-button' role='img' aria-label={path}>
+        <span id={path} className='nav-button' role='img' aria-label={path}>
           {name}
         </span>
       </NavLink>
