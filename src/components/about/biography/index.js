@@ -10,15 +10,12 @@ class Biography extends React.Component {
       <div className='modal modal-about'>
         <h1>the chef <Emoji input='👩🏻‍🍳'/></h1>
         <Portrait />
-        <Message id='bio'>
+        <Message id='bio' largeText>
           <p>
-            fancy meeting you here! my name is <span className='highlight'>angela tsang</span>
-            and i am a 4th year computer science undergraduate at the university of british
-            columbia. i am currently looking for <span className='highlight'>fall co-op opportunities</span>.
-            might you know of any open postings? <Emoji input='👀' />
+            fancy meeting you here! my name is <span className='highlight'>angela tsang</span> and i am a 4th year computer science undergraduate at the university of british columbia. i am currently looking for <span className='highlight'>fall co-op opportunities</span>. might you know of any open postings? <Emoji input='👀' />
           </p>
         </Message>
-        <Message id='connect'>
+        <Message id='connect' largeText>
           <p>
             let's connect!
           </p>

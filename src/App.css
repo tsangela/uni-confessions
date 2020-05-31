@@ -119,6 +119,8 @@ button {
   -ms-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
+
+  cursor: pointer;
 }
 
 .message:hover {
@@ -231,13 +233,6 @@ about
 
 .highlight {
   background: #eed2cc;
-}
-
-.message-about {
-  padding: 0 10px;
-  font-size: medium;
-  width: 100%;
-  cursor: unset;
 }
 
 /*
@@ -419,4 +414,12 @@ select {
   textarea {
     font-size: medium;
   }
+}
+
+/*
+about message
+*/
+.message-about {
+  font-size: medium;
+  cursor: crosshair;
 }

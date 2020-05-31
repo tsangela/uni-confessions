@@ -7,14 +7,12 @@ class Description extends React.Component {
     return (
     <div className='modal modal-about'>
         <h1>the spaghetti <Emoji input='🍝' /></h1>
-        <Message id='project-desc'>
+        <Message id='project-desc' largeText>
           <p>
-            this is a small message board web app created for <span className='highlight'>UBC CPSC 436I 2020S</span>.
-            this project was written in plain <span className='highlight'>html</span>, <span className='highlight'>css</span>,
-            and <span className='highlight'>javascript</span>. yes, this is some bland spaghetti.
+            this is a small message board web app created for <span className='highlight'>UBC CPSC 436I 2020S</span>. this spaghetti was implemented using <span className='highlight'>react</span>, <span className='highlight'>redux</span>, and <span className='highlight'>es6</span>. yes, quite the bland dish still.
           </p>
         </Message>
-        <Message id='project-guide'>
+        <Message id='project-guide' largeText>
           <p>
             quick start:
           </p>
@@ -36,7 +34,7 @@ class Description extends React.Component {
             </li>
           </ol>
         </Message>
-        <Message id='stay-home'>
+        <Message id='stay-home' largeText>
           <p>
             stay home and wash your hands! <Emoji input='🚰' />
           </p>
