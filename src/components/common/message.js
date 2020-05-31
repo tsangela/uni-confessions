@@ -2,9 +2,9 @@ import React from 'react';
 
 class Message extends React.Component {
   render() {
-    const { id, children } = this.props;
+    const { id, children, largeText } = this.props;
     return (
-      <div id={id} className='message'>
+      <div id={id} className={`message ${largeText && 'message-about'}`}>
         {children}
       </div>
     );

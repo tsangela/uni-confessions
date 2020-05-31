@@ -5,7 +5,7 @@ import Message from '../../common/message';
 class Description extends React.Component {
   render() {
     return (
-    <div className='modal'>
+    <div className='modal modal-about'>
         <h1>the spaghetti <Emoji input='🍝' /></h1>
         <Message id='project-desc'>
           <p>

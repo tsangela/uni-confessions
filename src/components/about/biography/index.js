@@ -7,7 +7,7 @@ import ConnectButton from './connect-button';
 class Biography extends React.Component {
   render() {
     return (
-      <div className='modal'>
+      <div className='modal modal-about'>
         <h1>the chef <Emoji input='👩🏻‍🍳'/></h1>
         <Portrait />
         <Message id='bio'>
