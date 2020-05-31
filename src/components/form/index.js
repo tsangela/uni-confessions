@@ -39,6 +39,7 @@ class Form extends React.Component {
     // validate input
     if (!name || age === NO_AGE || !text) {
       alert('please ensure that all fields are filled in 😊');
+      return;
     }
 
     // generate date and id

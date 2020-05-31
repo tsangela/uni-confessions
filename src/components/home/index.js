@@ -1,5 +1,4 @@
 import React from 'react';
-import './form.css'
 import Form from '../form';
 import Board from '../board/index';
 

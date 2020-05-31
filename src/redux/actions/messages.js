@@ -1,7 +1,5 @@
 import { messageTypes } from './types';
 
-// todo(atsang): clear form?
-
 export const addMessage = message => {
   return {
     type: messageTypes.ADD_MESSAGE,

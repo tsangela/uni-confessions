@@ -1,5 +1,4 @@
 import React from 'react';
-import './style.css'
 import Biography from './biography/index';
 import Description from './description/index';
 
