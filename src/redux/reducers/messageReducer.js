@@ -15,14 +15,12 @@ const deleteMessage = (messages, id) => {
 }
 
 const messageReducer = (state = initialState, action) => {
-  let messages = state.messages;
   switch (action.type) {
     case messageTypes.ADD_MESSAGE:
-      const message = action.message;
-      messages.push(message);
-      return { messages };
+      state.messages.unshift(action.message);
+      return { messages: [...state.messages] };
     case messageTypes.DELETE_MESSAGE:
-      const filteredMessages = deleteMessage(messages, action.id);
+      const filteredMessages = deleteMessage(state.messages, action.id);
       return { messages: filteredMessages };
     case messageTypes.CLEAR_BOARD:
       return { 

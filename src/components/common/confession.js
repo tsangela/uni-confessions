@@ -12,7 +12,7 @@ class Confession extends React.Component {
     }
   }
 
-  delete(id) {
+  handleClick = id => {
     const { deleting } = this.state;
     if (!deleting) {
       this.setState({ deleting: true });
@@ -26,7 +26,7 @@ class Confession extends React.Component {
     return (
       <div className={`delete-container${deleting ? ' deleting' : ''}`}>
         <Message id={id}>
-          <span ref={el => this.ref = el} id={`${id}_delete`} className='delete' onClick={() => this.delete(id)}>x</span>
+          <span ref={el => this.ref = el} id={`${id}_delete`} className='delete' onClick={() => this.handleClick(id)}>x</span>
           <span className='message-name'>{name}</span>
           <span className='message-age'>{age}</span>
           <div className='message-date'>{date}</div>
