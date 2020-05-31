@@ -1,5 +1,5 @@
 import React from 'react';
-import { getName } from '../utils/index';
+import { getName } from '../../../utils/index';
 import { NavLink } from "react-router-dom";
 
 class NavButton extends React.Component {

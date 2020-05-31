@@ -1,14 +1,15 @@
 import React from 'react';
+import './form.css'
 
-class About extends React.Component {
+class Home extends React.Component {
   render() {
     return (
       <div>
-        about
+        home
       </div>
     );
   }
 }
 
-export default About;
+export default Home;
 
