@@ -6,17 +6,19 @@ import { deleteMessage } from '../../redux/actions/messages';
 class Confession extends React.Component {
   constructor(props) {
     super(props);
-    this.ref = React.createRef();
     this.state = {
       deleting: false
     }
   }
 
   handleClick = id => {
+    // trigger delete animation
     const { deleting } = this.state;
     if (!deleting) {
       this.setState({ deleting: true });
     }
+
+    // wait for animation to complete before deleting
     setTimeout(() => {this.props.deleteMessage(id)}, 500);
   }
   
@@ -26,7 +28,7 @@ class Confession extends React.Component {
     return (
       <div className={`delete-container${deleting ? ' deleting' : ''}`}>
         <Message id={id}>
-          <span ref={el => this.ref = el} id={`${id}_delete`} className='delete' onClick={() => this.handleClick(id)}>x</span>
+          <span id={`${id}_delete`} className='delete' onClick={() => this.handleClick(id)}>x</span>
           <span className='message-name'>{name}</span>
           <span className='message-age'>{age}</span>
           <div className='message-date'>{date}</div>

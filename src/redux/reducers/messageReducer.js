@@ -23,9 +23,7 @@ const messageReducer = (state = initialState, action) => {
       const filteredMessages = deleteMessage(state.messages, action.id);
       return { messages: filteredMessages };
     case messageTypes.CLEAR_BOARD:
-      return { 
-        messages: [] 
-      };
+      return { messages: [] };
     default:
       return initialState;
   }

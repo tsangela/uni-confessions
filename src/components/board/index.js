@@ -1,25 +1,49 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { clearBoard } from '../../redux/actions/messages';
+import { deleteMessage, clearBoard } from '../../redux/actions/messages';
 import Confession from '../common/confession';
 
 class Board extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      deleting: false
+    }
+  }
+
+  handleClick = () => {
+    // trigger delete animation
+    const { deleting } = this.state;
+    if (!deleting) {
+      this.setState({ deleting: true });
+    }
+    
+    // iterate all messages
+    const { messages, deleteMessage } = this.props;
+    const ids = messages && messages.map(message => message.id);
+
+    // wait for animation to complete before deleting
+    setTimeout(() => {ids.forEach(id => deleteMessage(id))}, 500)
+  }
+
   render() {
-    console.log(this.props);
+    const { deleting } = this.state;
     return (
       <div id='modal-board' className='modal'>
         <h1>wall of secrets</h1>
         <div className='clear-messages-wrapper'>
-          <span id='clear-all' className='clear-messages-button'>clear all</span>
+          <span id='clear-all' className='clear-messages-button' onClick={this.handleClick}>clear all</span>
         </div>
-        {this.props.messages && this.props.messages.map(message => 
-          <Confession key={message.id} 
-                      id={message.id}
-                      date={message.date}
-                      name={message.name}
-                      age={message.age} 
-                      text={message.text}/>
-        )}
+        <div className={`${deleting ? ' deleting' : ''}`}>
+          {this.props.messages && this.props.messages.map(message => 
+            <Confession key={message.id} 
+                        id={message.id}
+                        date={message.date}
+                        name={message.name}
+                        age={message.age} 
+                        text={message.text}/>
+          )}
+        </div>
       </div>
     );
   }
@@ -29,4 +53,4 @@ const mapStateToProps = state => {
   return { messages: state.messageReducer.messages };
 };
 
-export default connect(mapStateToProps, { clearBoard })(Board);
+export default connect(mapStateToProps, { deleteMessage, clearBoard })(Board);
