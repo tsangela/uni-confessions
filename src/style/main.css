@@ -96,6 +96,10 @@ form
   content: ")";
 }
 
+.message-date {
+  font-style: italic;
+}
+
 .clear-messages-wrapper {
   color: #94a89a;
   font-style: italic;

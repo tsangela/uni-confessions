@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { clearBoard, deleteMessage } from '../../redux/actions/messages';
-import Message from '../common/message';
+import Confession from '../common/confession';
 
 class Board extends React.Component {
   render() {
@@ -13,7 +13,11 @@ class Board extends React.Component {
           <span id='clear-all' className='clear-messages-button'>clear all</span>
         </div>
         {this.props.messages && this.props.messages.map(message => 
-          <Message id={message.id}>{message.message}</Message>
+          <Confession id={message.id}
+                      date={message.date}
+                      name={message.name}
+                      age={message.age} 
+                      text={message.text}/>
         )}
       </div>
     );
