@@ -5,14 +5,14 @@ import { messageTypes } from './types';
 export const addMessage = message => {
   return {
     type: messageTypes.ADD_MESSAGE,
-    addMessage: message,
+    message: message,
   };
 };
 
 export const deleteMessage = id => {
   return {
     type: messageTypes.DELETE_MESSAGE,
-    deleteMessage: id,
+    id: id,
   };
 };
 

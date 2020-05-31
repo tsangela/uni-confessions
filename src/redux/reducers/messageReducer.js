@@ -5,6 +5,15 @@ const initialState = {
   messages: Default.messages,
 };
 
+const deleteMessage = (messages, id) => {
+  const ids = messages && messages.map(message => message.id);
+  const index = ids.indexOf(id);
+  if (index > -1) {
+    messages = messages.filter((message, i) => i !== index);
+  }
+  return messages;
+}
+
 const messageReducer = (state = initialState, action) => {
   let messages = state.messages;
   switch (action.type) {
@@ -13,11 +22,8 @@ const messageReducer = (state = initialState, action) => {
       messages.push(message);
       return { messages };
     case messageTypes.DELETE_MESSAGE:
-      const index = messages.indexOf(action.id);
-      if (index > -1) {
-        messages.splice(index, 1);
-      }
-      return { messages };
+      const filteredMessages = deleteMessage(messages, action.id);
+      return { messages: filteredMessages };
     case messageTypes.CLEAR_BOARD:
       return { 
         messages: [] 
@@ -26,5 +32,14 @@ const messageReducer = (state = initialState, action) => {
       return initialState;
   }
 };
+
+/**
+const deleteNode = id => {
+  let board = document.getElementById(ID_MODAL_BOARD);
+  let node = document.getElementById(id);
+  node.classList.add(CLASS_ANIMATE_DELETE);
+  setTimeout(() => {board.removeChild(node)}, 500);
+};
+ */
 
 export default messageReducer;
