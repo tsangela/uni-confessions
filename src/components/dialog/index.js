@@ -4,11 +4,6 @@ import { deleteMessage, deselectMessage } from '../../redux/actions/messages';
 import Clipboard from './clipboard';
 
 class Dialog extends React.Component {
-  constructor(props) {
-    super(props);
-    this.text = React.createRef();
-  }
-
   getMessage = (messages, selectedId) => {
     const selectedMessage = messages.filter(message => selectedId === message.id);
     return (selectedMessage && selectedMessage.length === 1) ? selectedMessage[0] : null;
@@ -35,12 +30,12 @@ class Dialog extends React.Component {
       <div className='center-wrapper dialog-container'>
         <div className='dialog-overlay' onClick={this.handleClose}/>
         <div className='modal dialog delete-container'>
-          <span id={`${id}_close`} className='close' onClick={this.handleClose}>close</span>
+          <span id={`${id}_close`} className='close' onClick={this.handleClose}>x</span>
+          <span className='message-date'>{date}</span>
           <span className='message-name'>{name}</span>
           <span className='message-age'>{age}</span>
-          <div className='message-date'>{date}</div>
-          <br />
-          <span ref={text => this.text = text}>{text}</span>
+          <div style={{ margin: '20px 0' }}/>
+          <span>{text}</span>
           <Clipboard text={text}/>
         </div>
       </div>

@@ -48,7 +48,6 @@ class Form extends React.Component {
 
     // construct message
     const message = {id, date, name, age, text};
-    console.log(`adding ${JSON.stringify(message)}`);
 
     // add message and clear form
     this.props.addMessage(message);

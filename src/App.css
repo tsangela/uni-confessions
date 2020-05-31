@@ -223,7 +223,7 @@ dialog
   border-top: 30px solid #94a89a;
   box-shadow: 2px 2px 22px rgba(0, 0, 0, 0.2);
 
-  animation: 0.3s zoomFadeIn;
+  animation: 0.3s zoomFadeIn ease;
 }
 
 .delete-container .close {
@@ -363,7 +363,14 @@ form
 }
 
 .message-date {
-  font-style: italic;
+  display: table;
+  border-collapse: separate;
+  padding: 5px;
+  font-size: x-small;
+  margin-bottom: 20px;
+
+  background: rgba(0, 0, 0, 0.3);
+  color: white;
 }
 
 .clear-messages-wrapper {
