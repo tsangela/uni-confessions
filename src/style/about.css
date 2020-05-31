@@ -1,0 +1,66 @@
+body {
+    background: linear-gradient(to right bottom, #94A89A, #EED2CC) no-repeat fixed;
+    font-family: "Lucida Console", Monaco, monospace;
+    font-size: small;
+    margin: 0;
+    padding: 60px 0 0;
+    width: 100%;
+    height: 100%;
+}
+
+.modal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#portrait {
+    width: 200px;
+    border-radius: 100%;
+
+    -webkit-transition: 0.2s ease;
+    -moz-transition: 0.2s ease;
+    -ms-transition: 0.2s ease;
+    -o-transition: 0.2s ease;
+    transition: 0.2s ease;
+}
+
+#portrait:hover {
+    opacity: 0.9;
+}
+
+.connect-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom: 15px;
+}
+
+.connect-button {
+    border: 1px dashed #94A89A;
+    padding: 0 5px;
+    background: #FBF7F4;
+    color: #94A89A;
+
+    -webkit-transition: 0.2s ease;
+    -moz-transition: 0.2s ease;
+    -ms-transition: 0.2s ease;
+    -o-transition: 0.2s ease;
+    transition: 0.2s ease;
+}
+
+.connect-button:hover {
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.highlight {
+    background: #EED2CC;
+}
+
+.message {
+    padding: 0 10px;
+    font-size: medium;
+    width: 100%;
+    cursor: unset;
+}
