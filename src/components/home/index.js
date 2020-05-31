@@ -1,11 +1,14 @@
 import React from 'react';
 import './form.css'
+import Form from '../form';
+import Board from '../board/index';
 
 class Home extends React.Component {
   render() {
     return (
-      <div>
-        home
+      <div className='center-wrapper'>
+        <Form />
+        <Board />
       </div>
     );
   }

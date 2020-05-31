@@ -11,7 +11,6 @@ function App() {
   return (
     <Router>
       <NavBar />
-      <div style={{height: 800}}>hello</div>
       <Route exact path={process.env.PUBLIC_URL + paths.HOME} component={Home} />
       <Route exact path={process.env.PUBLIC_URL + paths.ABOUT} component={About} />
     </Router>
