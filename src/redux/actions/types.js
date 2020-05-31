@@ -1,10 +1,6 @@
-import { combineReducers } from 'redux';
-
-const getReducers = (extraReducers) => {
-  return combineReducers({
-    // todo(atsang): add reducers here
-    ...extraReducers,
-  });
+export const messageTypes = {
+  ADD_MESSAGE: 'ADD_MESSAGE',
+  DELETE_MESSAGE: 'DELETE_MESSAGE',
+  CLEAR_BOARD: 'CLEAR_BOARD',
 };
 
-export default getReducers;

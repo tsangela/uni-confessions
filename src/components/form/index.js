@@ -1,11 +1,20 @@
 import React from 'react';
 
 class Form extends React.Component {
+  constructor(props) {
+    super(props);
+    this.ref = React.createRef();
+  }
+  
+  clearForm() {
+    this.ref.reset();
+  }
+
   render() {
     return (
       <div id='modal-form' className='modal'>
         <h1>tell me a secret</h1>
-          <form id='confession-form'>
+          <form ref={el => this.ref = el} id='confession-form'>
             <div className='form-inline'>
               <div id='form-name' className='form-group'>
                 <label htmlFor='name'>name</label>
@@ -28,7 +37,7 @@ class Form extends React.Component {
               <textarea id='confession' name='confession' className='text-box' placeholder='type here...'></textarea>
             </div>
             <div className='center-wrapper-button'>
-              <div id='clear-button' className='form-button clear'>clear</div>
+              <div id='clear-button' className='form-button clear' onClick={() => this.clearForm()}>clear</div>
               <div id='post-button' className='form-button post'>post</div>
             </div>
           </form>
