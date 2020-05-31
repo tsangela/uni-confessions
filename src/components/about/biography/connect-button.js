@@ -1,5 +1,5 @@
 import React from 'react';
-import Emoji from '../common/emoji';
+import Emoji from '../../common/emoji';
 
 class ConnectButton extends React.Component {
   render() {

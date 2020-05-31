@@ -1,7 +1,7 @@
 import React from 'react';
 import Portrait from './portrait';
-import Emoji from '../common/emoji';
-import Message from '../message/index';
+import Emoji from '../../common/emoji';
+import Message from '../../common/message';
 import ConnectButton from './connect-button';
 
 class Biography extends React.Component {
@@ -15,7 +15,7 @@ class Biography extends React.Component {
             fancy meeting you here! my name is <span className='highlight'>angela tsang</span>
             and i am a 4th year computer science undergraduate at the university of british
             columbia. i am currently looking for <span className='highlight'>fall co-op opportunities</span>.
-            might you know of any open postings?
+            might you know of any open postings? <Emoji input='👀' />
           </p>
         </Message>
         <Message id='connect'>

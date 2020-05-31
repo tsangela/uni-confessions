@@ -1,5 +1,5 @@
 import React from 'react';
-import portrait from '../../images/photo.png';
+import portrait from '../../../images/photo.png';
 
 class Portrait extends React.Component {
   render() {

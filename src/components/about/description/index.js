@@ -1,12 +1,12 @@
 import React from 'react';
-import Emoji from '../common/emoji';
-import Message from '../message';
+import Emoji from '../../common/emoji';
+import Message from '../../common/message';
 
 class Description extends React.Component {
   render() {
     return (
     <div className='modal'>
-        <h1>the spaghetti <Emoji input='🍝'/></h1>
+        <h1>the spaghetti <Emoji input='🍝' /></h1>
         <Message id='project-desc'>
           <p>
             this is a small message board web app created for <span className='highlight'>UBC CPSC 436I 2020S</span>.

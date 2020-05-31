@@ -1,6 +1,5 @@
 /*
-color scheme
-
+color scheme:
 #e29779 - dark salmon
 #d94560 - paradise pink
 #94A89A - morning blue
@@ -9,6 +8,7 @@ color scheme
 */
 
 body {
+    background: linear-gradient(to right top, #d94560, #e29779) no-repeat fixed;
     font-family: "Lucida Console", Monaco, monospace;
     margin: 0px;
     padding: 60px 0 0;

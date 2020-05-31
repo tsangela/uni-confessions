@@ -1,7 +1,7 @@
 import React from 'react';
 import './style.css'
-import Biography from '../biography/index';
-import Description from '../description';
+import Biography from './biography/index';
+import Description from './description/index';
 
 class About extends React.Component {
   render() {
