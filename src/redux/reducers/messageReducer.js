@@ -3,6 +3,7 @@ import Default from '../../resources/default.json';
 
 const initialState = {
   messages: Default.messages,
+  selectedId: null
 };
 
 const deleteMessage = (messages, id) => {
@@ -31,6 +32,11 @@ const messageReducer = (state = initialState, action) => {
       const filteredMessages = deleteMessage(state.messages, action.id);
       return { messages: filteredMessages };
 
+    case messageTypes.SELECT_MESSAGE:
+      // set id of selected message
+      const { selectedId, ...rest } = state;
+      return { selectedId: action.id, ...rest };
+
     case messageTypes.CLEAR_BOARD:
       // set messages to empty list
       return { messages: [] };
@@ -40,14 +46,5 @@ const messageReducer = (state = initialState, action) => {
       return initialState;
   }
 };
-
-/**
-const deleteNode = id => {
-  let board = document.getElementById(ID_MODAL_BOARD);
-  let node = document.getElementById(id);
-  node.classList.add(CLASS_ANIMATE_DELETE);
-  setTimeout(() => {board.removeChild(node)}, 500);
-};
- */
 
 export default messageReducer;

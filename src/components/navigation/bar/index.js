@@ -1,6 +1,6 @@
 import React from 'react';
 import NavButton from '../button/index';
-import { paths } from '../../../utils/constants';
+import { paths } from '../../../resources/paths';
 
 class NavBar extends React.Component {
   render() {

@@ -14,6 +14,13 @@ export const deleteMessage = id => {
   };
 };
 
+export const selectMessage = id => {
+  return {
+    type: messageTypes.SELECT_MESSAGE,
+    id: id,
+  }
+}
+
 export const clearBoard = () => {
   return {
     type: messageTypes.CLEAR_BOARD,

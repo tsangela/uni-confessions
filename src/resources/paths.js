@@ -1,5 +1,10 @@
-import { paths } from './constants';
+// navigation paths
+export const paths = {
+  HOME: '/home',
+  ABOUT: '/about'
+};
 
+// resolve nav button name
 export const getName = path => {
   switch (path) {
     case paths.HOME:
