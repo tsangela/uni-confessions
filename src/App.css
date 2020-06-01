@@ -250,7 +250,7 @@ dialog
 .title-bar {
   position: sticky;
   top: -30px;
-  margin: -30px -30px 30px -30px;
+  margin: -30px -30px 20px -30px;
   height: 40px;
   background: #94a89a;
 }

@@ -31,7 +31,7 @@ class Dialog extends React.Component {
         <div className='dialog-overlay' onClick={this.handleClose}/>
         <div className='modal dialog delete-container'>
           <div className='title-bar'>
-            <span id={`${id}_close`} className='close' onClick={this.handleClose}>x</span>
+            <span id={`${id}_close`} className='close' role='button' aria-label='close button' title='close' onClick={this.handleClose}>x</span>
           </div>
           <span className='message-date'>{date}</span>
           <span className='message-name'>{name}</span>
