@@ -238,31 +238,39 @@ dialog
 }
 
 .dialog {
+  background: white;
   max-height: 50%;
   overflow: scroll;
-  border-top: 30px solid #94a89a;
+  /* border-top: 30px solid #94a89a; */
   box-shadow: 2px 2px 22px rgba(0, 0, 0, 0.2);
 
   animation: 0.3s zoomFadeIn ease;
 }
 
+.title-bar {
+  position: sticky;
+  top: -30px;
+  margin: -30px -30px 30px -30px;
+  height: 40px;
+  background: #94a89a;
+}
+
 .delete-container .close {
-  position: absolute;
-  z-index: 1;
-  top: 5px;
-  right: 5px;
+  float: right;
+  top: 10px;
+  right: 10px;
+  margin-top: 10px;
+  margin-right: 10px;
 
   text-align: center;
   padding: 3px 5px;
-  border-radius: 100px;
+  border-radius: 5px;
   font-size: x-small;
 
-  color: #d94560;
-  border: 1px solid #d94560;
+  color: white;
+  border: 1px solid white;
 
-  visibility: hidden;
-  opacity: 0;
-  transform: scale(0.01);
+  transform: scale(0.9);
 
   -webkit-transition: 0.2s ease;
   -moz-transition: 0.2s ease;
@@ -271,16 +279,11 @@ dialog
   transition: 0.2s ease;
 }
 
-.delete-container:hover .close {
-  visibility: visible;
-  opacity: 1;
-  transform: scale(1);
-}
-
 .close:hover {
   cursor: pointer;
-  background: #d94560;
-  color: #fff;
+  background: white;
+  color: #d94560;
+  transform: scale(1.1);
 }
 
 .clipboard {
@@ -391,6 +394,16 @@ form
 
   background: rgba(0, 0, 0, 0.3);
   color: white;
+
+  -webkit-transition: 0.2s ease;
+  -moz-transition: 0.2s ease;
+  -ms-transition: 0.2s ease;
+  -o-transition: 0.2s ease;
+  transition: 0.2s ease;
+}
+
+.message-date:hover {
+  background: rgba(0, 0, 0, 0.4);
 }
 
 .clear-messages-wrapper {
