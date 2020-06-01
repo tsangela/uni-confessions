@@ -10,12 +10,12 @@ class Biography extends React.Component {
       <div className='modal modal-about'>
         <h1>the chef <Emoji input='👩🏻‍🍳'/></h1>
         <Portrait />
-        <Message id='bio' largeText>
+        <Message id='bio' about>
           <p>
             fancy meeting you here! my name is <span className='highlight'>angela tsang</span> and i am a 4th year computer science undergraduate at the university of british columbia. i am currently looking for <span className='highlight'>fall co-op opportunities</span>. might you know of any open postings? <Emoji input='👀' />
           </p>
         </Message>
-        <Message id='connect' largeText>
+        <Message id='connect' about>
           <p>
             let's connect!
           </p>
@@ -24,7 +24,7 @@ class Biography extends React.Component {
             <ConnectButton name='github' url='https://github.com/tsangela/' emojiInput='💻' />
           </div>
         </Message>
-        <Message id='stay-home' largeText>
+        <Message id='stay-home' about>
           <p>
             stay home and wash your hands! <Emoji input='🚰' />
           </p>

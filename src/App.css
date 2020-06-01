@@ -34,7 +34,7 @@ button {
 }
 
 li {
-  margin: 10px 0;
+  margin: 5px 0;
 }
 
 .nav {
@@ -327,6 +327,12 @@ about
   opacity: 0.9;
 }
 
+.message-about {
+  font-size: medium;
+  cursor: crosshair;
+  line-height: 20px;
+}
+
 .connect-wrapper {
   display: flex;
   flex-direction: row;
@@ -340,6 +346,7 @@ about
   padding: 0 5px;
   background: #fbf7f4;
   color: #94a89a;
+  line-height: initial;
 
   -webkit-transition: 0.2s ease;
   -moz-transition: 0.2s ease;
@@ -552,13 +559,4 @@ select {
   textarea {
     font-size: medium;
   }
-}
-
-/*
-about message
-*/
-
-.message-about {
-  font-size: medium;
-  cursor: crosshair;
 }
