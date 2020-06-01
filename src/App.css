@@ -252,7 +252,7 @@ dialog
   top: -30px;
   margin: -30px -30px 20px -30px;
   height: 40px;
-  background: #94a89a;
+  background: linear-gradient(to right top, #d94560, #e29779) no-repeat fixed;
 }
 
 .delete-container .close {
@@ -282,7 +282,7 @@ dialog
 .close:hover {
   cursor: pointer;
   background: white;
-  color: #d94560;
+  color: #e29779;
   transform: scale(1.1);
 }
 
