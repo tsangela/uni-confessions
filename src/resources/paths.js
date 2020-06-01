@@ -1,7 +1,8 @@
 // navigation paths
 export const paths = {
-  HOME: '/home',
-  ABOUT: '/about'
+  HOME: '/',
+  ABOUT: '/about',
+  RANDOM: '',
 };
 
 // resolve nav button name
@@ -11,6 +12,8 @@ export const getName = path => {
       return '🏠 home';
     case paths.ABOUT:
       return '👩🏻‍💻 about';
+    case paths.RANDOM:
+      return '🎲 random';
     default:
       return '';
   }

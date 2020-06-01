@@ -24,6 +24,11 @@ class Biography extends React.Component {
             <ConnectButton name='github' url='https://github.com/tsangela/' emojiInput='💻' />
           </div>
         </Message>
+        <Message id='stay-home' largeText>
+          <p>
+            stay home and wash your hands! <Emoji input='🚰' />
+          </p>
+        </Message>
       </div>
     );
   }

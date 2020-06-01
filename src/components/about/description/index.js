@@ -27,17 +27,21 @@ class Description extends React.Component {
               see it posted on the <span className='highlight'>wall of secrets</span>
             </li>
             <li>
-              immediately <span className='highlight'>regret</span>... what have you done?!
+              <span className='highlight'>click</span> the confession to see more details
             </li>
             <li>
-              <span className='highlight'>click</span> the confession you want to delete
+              click outside the dialog and feel proud that you've just posted your <span className='highlight'>deepest, darkest secret</span> for the whole world to see...
+            </li>
+            <li>
+              what have you just done?!
+            </li>
+            <li>
+              <span className='highlight'>hover</span> over confession your confession to find the delete button
+            </li>
+            <li>
+              do it all over again
             </li>
           </ol>
-        </Message>
-        <Message id='stay-home' largeText>
-          <p>
-            stay home and wash your hands! <Emoji input='🚰' />
-          </p>
         </Message>
     </div>
     );
