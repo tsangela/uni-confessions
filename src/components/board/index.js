@@ -34,7 +34,7 @@ class Board extends React.Component {
         <div className='clear-messages-wrapper'>
           <span id='clear-all' className='clear-messages-button' onClick={this.handleClick}>clear all</span>
         </div>
-        <div className={`${deleting ? ' deleting' : ''}`}>
+        <div className={`message-container${deleting ? ' deleting' : ''}`}>
           {this.props.messages && this.props.messages.map(message => 
             <Confession key={message.id} 
                         id={message.id}
