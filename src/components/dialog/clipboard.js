@@ -22,6 +22,7 @@ class Clipboard extends React.Component {
         alert('could not copy text: ', err);
       });
     this.setState({ copied: true });
+    setTimeout(() => { this.setState({ copied: false }) }, 1000)
   }
 
   render() {
