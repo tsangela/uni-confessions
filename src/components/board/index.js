@@ -23,10 +23,14 @@ class Board extends React.Component {
     const ids = messages && messages.map(message => message.id);
 
     // wait for animation to complete before deleting
-    setTimeout(() => {ids.forEach(id => deleteMessage(id))}, 500)
+    setTimeout(() => {
+      ids.forEach(id => deleteMessage(id)); // delete all messages
+      this.setState({ deleting: false }); // reset the state for the next time the board is cleared
+    }, 500)
   }
 
   render() {
+    const { messages } = this.props;
     const { deleting } = this.state;
     return (
       <div id='modal-board' className='modal'>
@@ -34,15 +38,14 @@ class Board extends React.Component {
         <div className='clear-messages-wrapper'>
           <span id='clear-all' className='clear-messages-button' onClick={this.handleClick}>clear all</span>
         </div>
-        <div className={`message-container${deleting ? ' deleting' : ''}`}>
-          {this.props.messages && this.props.messages.map(message => 
-            <Confession key={message.id} 
-                        id={message.id}
-                        date={message.date}
-                        name={message.name}
-                        age={message.age} 
-                        text={message.text}/>
-          )}
+        <div className={`message-container${(deleting && messages.length !== 0) ? ' deleting' : ''}`}>
+            {messages && messages.map(message => 
+              <Confession key={message.id} 
+                          id={message.id}
+                          date={message.date}
+                          name={message.name}
+                          age={message.age} 
+                          text={message.text}/>)}
         </div>
       </div>
     );
