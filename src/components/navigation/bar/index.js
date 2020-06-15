@@ -10,7 +10,7 @@ class NavBar extends React.Component {
       <div id='nav-bar' className='nav'>
         <NavButton path={paths.HOME} />
         <NavButton path={paths.ABOUT} />
-        {/* <Route path={paths.HOME} render={(props) => <RandomButton {...props} path={paths.RANDOM} />} /> */}
+        <Route path={paths.HOME} render={(props) => <RandomButton {...props} path={paths.RANDOM} />} />
       </div>
     );
   }
