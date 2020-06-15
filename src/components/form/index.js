@@ -7,6 +7,7 @@ const NONE = '--';
 const DEFAULT_STATE = { 
   username: '',
   age: NONE,
+  university: NONE,
   text: ''
 };
 
@@ -14,12 +15,7 @@ class Form extends React.Component {
   constructor(props) {
     super(props);
     this.form = React.createRef();
-    this.state = { 
-      username: '',
-      age: NONE,
-      university: NONE,
-      text: ''
-    };
+    this.state = DEFAULT_STATE;
   }
   
   clearForm = () => {
