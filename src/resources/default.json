@@ -3,36 +3,41 @@
     {
       "id": "default0",
       "date": "5/9/2020, 6:57:50 PM",
-      "name": "billnyefan",
+      "username": "billnyefan",
       "age": "< 18",
+      "university": "other",
       "text": "i haven't showered in 3 days"
     },
     {
       "id": "default1",
       "date": "5/9/2020, 6:52:02 PM",
-      "name": "karen2",
+      "username": "karen2",
       "age": "35-44",
+      "university": "sfu",
       "text": "stockpiled on toilet paper and now i have too much :("
     },
     {
       "id": "default2",
       "date": "5/9/2020, 6:45:27 PM",
-      "name": "tindergentleman123",
+      "username": "tindergentleman123",
       "age": "55+",
+      "university": "ubc",
       "text": "looking for a long-term s/o"
     },
     {
       "id": "default3",
       "date": "5/9/2020, 6:30:01 PM",
-      "name": "xXbanditXx",
+      "username": "xXbanditXx",
       "age": "18-24",
+      "university": "bcit",
       "text": "i can't believe it's not butter!"
     },
     {
       "id": "default4",
       "date": "5/9/2020, 6:02:32 PM",
-      "name": "anon",
+      "username": "anon",
       "age": "45-54",
+      "university": "uvic",
       "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vel eros et nisl rutrum semper nec non ligula. Nunc vel rhoncus lorem. Maecenas convallis ex at risus posuere tristique. Aliquam erat volutpat. Proin metus magna, auctor a feugiat a, rhoncus id mauris. Nulla molestie magna non leo maximus, quis accumsan dolor auctor. Integer facilisis, leo vel imperdiet gravida, tellus purus condimentum ante, quis blandit urna mi a arcu. Donec maximus gravida ipsum, nec hendrerit tortor fermentum sed. Nullam odio orci, efficitur ac nibh quis, malesuada viverra odio. Donec at iaculis mi. Mauris a leo vel velit commodo vulputate. Mauris faucibus luctus nulla, vel maximus mi. Maecenas sit amet nunc vel massa placerat bibendum non sit amet velit."
     }
   ]
