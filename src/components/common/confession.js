@@ -39,7 +39,7 @@ class Confession extends React.Component {
           <span ref={ref => this.deleteButton = ref} id={`${id}_delete`} className='delete' onClick={() => this.handleDelete(id)}>-</span>
           <span className='message-username'>{username}</span>
           <span className='message-age'>{age}</span>
-          <span className='message-university'>{university.toUpperCase()}</span>
+          <span className={`message-university ${university}`}>{university.toUpperCase()}</span>
           <p>{text}</p>
         </Message>
       </div>
