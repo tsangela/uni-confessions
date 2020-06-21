@@ -509,10 +509,10 @@ message board
 
 .message-university {
   margin-left: 10px;
-  padding: 2px;
+  padding: 2px 5px; /* padding: 2px; */
   font-size: x-small;
   color: white;
-  border-radius: 2px;
+  border-radius: 100px; /* border-radius: 2px */
 
   /* default */
   background: rgba(0, 0, 0, 0.3);
