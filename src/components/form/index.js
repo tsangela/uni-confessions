@@ -1,11 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { addMessage } from '../../redux/actions/messages';
+import options from '../../resources/options.json'
 
-const NO_AGE = '--';
+const NONE = '--';
 const DEFAULT_STATE = { 
-  name: '',
-  age: NO_AGE,
+  username: '',
+  age: NONE,
+  university: NONE,
   text: ''
 };
 
@@ -13,11 +15,7 @@ class Form extends React.Component {
   constructor(props) {
     super(props);
     this.form = React.createRef();
-    this.state = { 
-      name: '',
-      age: NO_AGE,
-      text: ''
-    };
+    this.state = DEFAULT_STATE;
   }
   
   clearForm = () => {
@@ -33,21 +31,21 @@ class Form extends React.Component {
 
   handleSubmit = () => {
     // retrieve input
-    const { name, age, text } = this.state;
+    const { username, age, university, text } = this.state;
 
     // validate input
-    if (!name || age === NO_AGE || !text) {
+    if (!username || age === NONE || university === NONE || !text) {
       alert('please ensure that all fields are filled in 😊');
       return;
     }
 
     // generate date and id
     const now = new Date();
-    const id = `${name}_${now.getTime()}`;
+    const id = `${username}_${now.getTime()}`;
     const date = now.toLocaleString();
 
     // construct message
-    const message = {id, date, name, age, text};
+    const message = {id, date, username, age, university, text};
 
     // add message and clear form
     this.props.addMessage(message);
@@ -59,21 +57,23 @@ class Form extends React.Component {
       <div id='modal-form' className='modal'>
         <h1>tell me a secret</h1>
           <form ref={ref => this.form = ref} id='confession-form'>
+            <div id='form-name' className='form-group'>
+              <label htmlFor='username'>username</label>
+              <input type='text' id='username' name='username' placeholder='ex: anonymous' onBlur={this.handleChange}/>
+            </div>
             <div className='form-inline'>
-              <div id='form-name' className='form-group'>
-                <label htmlFor='name'>name</label>
-                <input type='text' id='name' name='name' placeholder='ex: anonymous' onBlur={this.handleChange}/>
-              </div>
               <div id='form-age' className='form-group'>
                 <label htmlFor='age'>age</label>
                 <select id='age' name='age' value={this.state.age} onChange={this.handleChange}>
-                  <option disabled value={NO_AGE}>{NO_AGE}</option>
-                  <option value='< 18'>{`< 18`}</option>
-                  <option value='18-24'>18-24</option>
-                  <option value='25-34'>25-34</option>
-                  <option value='35-44'>35-44</option>
-                  <option value='45-54'>45-54</option>
-                  <option value='55+'>55+</option>
+                  <option disabled value={NONE}>{NONE}</option>
+                  {options.ageRanges.map(age => <option key={age} value={age}>{age}</option>)}
+                </select>
+              </div>
+              <div id='form-university' className='form-group'>
+                <label htmlFor='university'>university</label>
+                <select id='university' name='university' value={this.state.university} onChange={this.handleChange}>
+                  <option disabled value={NONE}>{NONE}</option>
+                  {options.universities.map(uni => <option key={uni} value={uni}>{uni}</option>)}
                 </select>
               </div>
             </div>

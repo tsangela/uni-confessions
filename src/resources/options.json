@@ -1,0 +1,4 @@
+{
+  "ageRanges": ["< 18", "18-24", "25-34", "35-44", "45-54", "55+"],
+  "universities": ["ubc", "sfu", "bcit", "uvic", "other"]
+}

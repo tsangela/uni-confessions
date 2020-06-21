@@ -18,7 +18,7 @@ class Description extends React.Component {
           </p>
           <ol>
             <li>
-              enter a <span className='highlight'>nickname</span>, select your <span className='highlight'>age range</span>, and write whatever you want in the <span className='highlight'>text box</span>
+              enter a <span className='highlight'>username</span>, select your <span className='highlight'>age range</span>, and write whatever you want in the <span className='highlight'>text box</span>
             </li>
             <li>
               submit your <span className='highlight'>juicy confession</span>

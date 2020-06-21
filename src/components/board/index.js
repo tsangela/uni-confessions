@@ -43,8 +43,9 @@ class Board extends React.Component {
               <Confession key={message.id} 
                           id={message.id}
                           date={message.date}
-                          name={message.name}
+                          username={message.username}
                           age={message.age} 
+                          university={message.university} 
                           text={message.text}/>)}
         </div>
       </div>

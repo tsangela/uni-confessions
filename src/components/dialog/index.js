@@ -23,7 +23,7 @@ class Dialog extends React.Component {
 
     // retrieve selected message
     const selectedMessage = this.getMessage(messages, selectedId);
-    const { id, date, name, age, text } = selectedMessage;
+    const { id, date, username, age, university, text } = selectedMessage;
 
     // render dialog with message metadata
     return (
@@ -34,9 +34,11 @@ class Dialog extends React.Component {
             <span id={`${id}_close`} className='close' role='button' aria-label='close button' title='close' onClick={this.handleClose}>x</span>
           </div>
           <span className='message-date'>{date}</span>
-          <span className='message-name'>{name}</span>
-          <span className='message-age'>{age}</span>
-          <div style={{ margin: '20px 0' }}/>
+          <div className='user-info'>
+            <span className='message-username'>{username}</span>
+            <span className='message-age'>{age}</span>
+            <span className='message-university'>{university.toUpperCase()}</span>
+          </div>
           <span>{text}</span>
           <Clipboard text={text}/>
         </div>
