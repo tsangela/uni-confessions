@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { PropTypes } from 'prop-types';
 import { deleteMessage, clearBoard } from '../../redux/actions/messages';
 import Confession from '../common/confession';
 
@@ -7,8 +8,8 @@ class Board extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      deleting: false
-    }
+      deleting: false,
+    };
   }
 
   handleClick = () => {
@@ -17,44 +18,73 @@ class Board extends React.Component {
     if (!deleting) {
       this.setState({ deleting: true });
     }
-    
+
     // iterate all messages
     const { messages, deleteMessage } = this.props;
-    const ids = messages && messages.map(message => message.id);
+    const ids = messages && messages.map((message) => message.id);
 
     // wait for animation to complete before deleting
     setTimeout(() => {
-      ids.forEach(id => deleteMessage(id)); // delete all messages
+      ids.forEach((id) => deleteMessage(id)); // delete all messages
       this.setState({ deleting: false }); // reset the state for the next time the board is cleared
-    }, 500)
-  }
+    }, 500);
+  };
+
+  handleKey = (event) => {
+    // enter key
+    if (event.key === 'Enter') {
+      this.handleClick();
+    }
+  };
 
   render() {
     const { messages } = this.props;
     const { deleting } = this.state;
     return (
-      <div id='modal-board' className='modal'>
+      <div id="modal-board" className="modal">
         <h1>wall of secrets</h1>
-        <div className='clear-messages-wrapper'>
-          <span id='clear-all' className='clear-messages-button' onClick={this.handleClick}>clear all</span>
+        <div className="clear-messages-wrapper">
+          <span
+            id="clear-all"
+            className="clear-messages-button"
+            role="button"
+            tabIndex={0}
+            onClick={this.handleClick}
+            onKeyDown={this.handleClick}
+          >
+            clear all
+          </span>
         </div>
-        <div className={`message-container${(deleting && messages.length !== 0) ? ' deleting' : ''}`}>
-            {messages && messages.map(message => 
-              <Confession key={message.id} 
-                          id={message.id}
-                          date={message.date}
-                          username={message.username}
-                          age={message.age} 
-                          university={message.university} 
-                          text={message.text}/>)}
+        <div
+          className={`message-container${
+            deleting && messages.length !== 0 ? ' deleting' : ''
+          }`}
+        >
+          {messages &&
+            messages.map((message) => (
+              <Confession
+                key={message.id}
+                id={message.id}
+                date={message.date}
+                username={message.username}
+                age={message.age}
+                university={message.university}
+                text={message.text}
+              />
+            ))}
         </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return { messages: state.messageReducer.messages };
 };
 
 export default connect(mapStateToProps, { deleteMessage, clearBoard })(Board);
+
+Board.propTypes = {
+  messages: PropTypes.arrayOf(PropTypes.object).isRequired,
+  deleteMessage: PropTypes.func.isRequired,
+};

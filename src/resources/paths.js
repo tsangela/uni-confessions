@@ -6,7 +6,7 @@ export const paths = {
 };
 
 // resolve nav button name
-export const getName = path => {
+export const getName = (path) => {
   switch (path) {
     case paths.HOME:
       return '🏠 home';
@@ -17,4 +17,4 @@ export const getName = path => {
     default:
       return '';
   }
-}
+};

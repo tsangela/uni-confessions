@@ -87,7 +87,7 @@ common
 
 body {
   background: linear-gradient(to right top, #d94560, #e29779) no-repeat fixed;
-  font-family: "Lucida Console", Monaco, monospace;
+  font-family: 'Lucida Console', Monaco, monospace;
   margin: 0px;
   padding: 60px 0 0;
   width: 100%;
@@ -104,7 +104,7 @@ a {
 }
 
 button {
-  font-family: "Lucida Console", Monaco, monospace;
+  font-family: 'Lucida Console', Monaco, monospace;
 }
 
 li {
@@ -166,7 +166,7 @@ li {
   cursor: pointer;
 }
 
-[class^="center-wrapper"] {
+[class^='center-wrapper'] {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -277,6 +277,10 @@ dialog
   -ms-transition: 0.2s ease;
   -o-transition: 0.2s ease;
   transition: 0.2s ease;
+}
+
+.delete-container .close::before {
+  content: 'x';
 }
 
 .close:hover {
@@ -429,7 +433,7 @@ textarea {
   border-radius: 3px;
   border: 1px solid transparent;
   outline: none;
-  font-family: "Lucida Console", Monaco, monospace;
+  font-family: 'Lucida Console', Monaco, monospace;
   font-size: small;
 }
 
@@ -536,11 +540,11 @@ message board
 }
 
 .message-age::before {
-  content: "(";
+  content: '(';
 }
 
 .message-age::after {
-  content: ")";
+  content: ')';
 }
 
 .message-date {

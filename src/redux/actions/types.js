@@ -6,3 +6,4 @@ export const messageTypes = {
   CLEAR_BOARD: 'CLEAR_BOARD',
 };
 
+export default messageTypes;
