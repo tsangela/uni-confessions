@@ -5,12 +5,12 @@ const DB_NAME = 'messageBoard';
 const toSortedKeysString = (obj) => Object.keys(obj).sort().toString();
 
 const isValidItem = (item, expectedKeys) => {
-  console.log(item, toSortedKeysString(item), expectedKeys);
+  // console.log(item, toSortedKeysString(item), expectedKeys); // todo(atsang): delete
   return item && toSortedKeysString(item) === expectedKeys;
 }
 
 module.exports = {
-  CONNECTION_STRING,
+  CONNECTION_STRING,   
   DB_NAME,
   toSortedKeysString,
   isValidItem,

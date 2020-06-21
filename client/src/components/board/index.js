@@ -1,90 +1,71 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { PropTypes } from 'prop-types';
-import { deleteMessage, clearBoard } from '../../redux/actions/messages';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteMessage } from '../../redux/actions/messages';
 import Confession from '../common/confession';
 
-class Board extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      deleting: false,
-    };
-  }
+const Board = () => {
+  const dispatch = useDispatch();
+  const [deleting, setDeleting] = useState(false);
+  const messages = useSelector((state) => state.messageReducer.messages);
 
-  handleClick = () => {
+  const handleClick = () => {
     // trigger delete animation
-    const { deleting } = this.state;
     if (!deleting) {
-      this.setState({ deleting: true });
+      setDeleting(true);
     }
 
     // iterate all messages
-    const { messages, deleteMessage } = this.props;
     const ids = messages && messages.map((message) => message.id);
 
     // wait for animation to complete before deleting
     setTimeout(() => {
-      ids.forEach((id) => deleteMessage(id)); // delete all messages
-      this.setState({ deleting: false }); // reset the state for the next time the board is cleared
+      ids.forEach((id) => dispatch(deleteMessage(id))); // delete all messages
+      setDeleting(false); // reset the state for the next time the board is cleared
     }, 500);
   };
 
-  handleKey = (event) => {
+  const handleKey = (event) => {
     // enter key
     if (event.key === 'Enter') {
-      this.handleClick();
+      handleClick();
     }
   };
 
-  render() {
-    const { messages } = this.props;
-    const { deleting } = this.state;
-    return (
-      <div id="modal-board" className="modal">
-        <h1>wall of secrets</h1>
-        <div className="clear-messages-wrapper">
-          <span
-            id="clear-all"
-            className="clear-messages-button"
-            role="button"
-            tabIndex={0}
-            onClick={this.handleClick}
-            onKeyDown={this.handleClick}
-          >
-            clear all
-          </span>
-        </div>
-        <div
-          className={`message-container${
-            deleting && messages.length !== 0 ? ' deleting' : ''
-          }`}
+  return (
+    <div id="modal-board" className="modal">
+      <h1>wall of secrets</h1>
+      <div className="clear-messages-wrapper">
+        <span
+          id="clear-all"
+          className="clear-messages-button"
+          role="button"
+          tabIndex={0}
+          onClick={handleClick}
+          onKeyDown={handleKey}
         >
-          {messages &&
-            messages.map((message) => (
-              <Confession
-                key={message.id}
-                id={message.id}
-                date={message.date}
-                username={message.username}
-                age={message.age}
-                university={message.university}
-                text={message.text}
-              />
-            ))}
-        </div>
+          clear all
+        </span>
       </div>
-    );
-  }
-}
-
-const mapStateToProps = (state) => {
-  return { messages: state.messageReducer.messages };
+      <div
+        className={`message-container${
+          deleting && messages.length !== 0 ? ' deleting' : ''
+        }`}
+      >
+        {messages &&
+          messages.map((message) => (
+            <Confession
+              key={message.id}
+              id={message.id}
+              date={message.date}
+              username={message.username}
+              age={message.age}
+              university={message.university}
+              text={message.text}
+            />
+          ))}
+      </div>
+    </div>
+  );
 };
 
-export default connect(mapStateToProps, { deleteMessage, clearBoard })(Board);
-
-Board.propTypes = {
-  messages: PropTypes.arrayOf(PropTypes.object).isRequired,
-  deleteMessage: PropTypes.func.isRequired,
-};
+export default Board;
