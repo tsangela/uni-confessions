@@ -7,9 +7,9 @@ import { deselectMessage } from '../../redux/actions/messages';
 import Clipboard from './clipboard';
 
 const Dialog = () => {
-  const dispatch = useDispatch();
   const messages = useSelector((state) => state.messageReducer.messages);
   const selectedId = useSelector((state) => state.messageReducer.selectedId);
+  const dispatch = useDispatch();
 
   const getMessage = (selectedId) => {
     const selectedMessage = messages.filter(

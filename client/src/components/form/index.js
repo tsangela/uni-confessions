@@ -13,9 +13,9 @@ const DEFAULT_STATE = {
 };
 
 const Form = () => {
+  const [message, setMessage] = useState(DEFAULT_STATE);
   const dispatch = useDispatch();
   const formRef = React.useRef(null);
-  const [message, setMessage] = useState(DEFAULT_STATE);
 
   const clearForm = () => {
     // reset state

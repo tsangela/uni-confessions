@@ -4,9 +4,9 @@ import { deleteMessage } from '../../redux/actions/messages';
 import Confession from '../common/confession';
 
 const Board = () => {
+  const messages = useSelector((state) => state.messageReducer.messages);
   const dispatch = useDispatch();
   const [deleting, setDeleting] = useState(false);
-  const messages = useSelector((state) => state.messageReducer.messages);
 
   const handleClick = () => {
     // trigger delete animation

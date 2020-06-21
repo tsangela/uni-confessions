@@ -1,12 +1,14 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { withRouter } from 'react-router';
 import { useHistory } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
 import { selectMessage } from '../../../redux/actions/messages';
 import { getName, paths } from '../../../resources/paths';
 
-const RandomButton = ({ path, messages, selectMessage }) => {
+const RandomButton = ({ path }) => {
+  const messages = useSelector((state) => state.messageReducer.messages);
+  const dispatch = useDispatch();
   const history = useHistory();
   const name = getName(path);
 
@@ -23,7 +25,7 @@ const RandomButton = ({ path, messages, selectMessage }) => {
     history.push(paths.HOME);
 
     // select message
-    selectMessage(messages[index].id);
+    dispatch(selectMessage(messages[index].id));
   };
 
   return (
@@ -41,16 +43,8 @@ const RandomButton = ({ path, messages, selectMessage }) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return { messages: state.messageReducer.messages };
-};
-
-export default withRouter(
-  connect(mapStateToProps, { selectMessage })(RandomButton)
-);
+export default withRouter(RandomButton);
 
 RandomButton.propTypes = {
   path: PropTypes.string.isRequired,
-  messages: PropTypes.arrayOf(PropTypes.object).isRequired,
-  selectMessage: PropTypes.func.isRequired,
 };
