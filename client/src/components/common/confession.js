@@ -60,7 +60,7 @@ const Confession = ({ id, date, username, age, university, text }) => {
         >
           -
         </span>
-        <div className="message-metadata">
+        <div className="message-user-info">
           <div>
             <span className="message-username">{username}</span>
             <span className="message-age">{age}</span>

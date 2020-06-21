@@ -11,42 +11,48 @@ const Description = () => {
       <Message id="project-desc" about>
         <p>
           this is a small message board web app created for{' '}
-          <span className="highlight">UBC CPSC 436I 2020S</span>. this spaghetti
-          was implemented using <span className="highlight">react</span>,{' '}
-          <span className="highlight">redux</span>, and{' '}
-          <span className="highlight">es6</span>. yes, quite the bland dish
-          still.
+          <span className="highlight">UBC CPSC 436I 2020S</span>.
+        </p>
+        <p>
+          this spaghetti was cooked up with{' '}
+          <span className="highlight">react</span>,{' '}
+          <span className="highlight">redux</span>,{' '}
+          <span className="highlight">es6</span>,{' '}
+          <span className="highlight">nodejs</span>,{' '}
+          <span className="highlight">express</span>, and{' '}
+          <span className="highlight">mongodb</span>.
+        </p>
+        <p>
+          knees weak, mom's spaghetti. <Emoji input="😩" />
         </p>
       </Message>
       <Message id="project-guide" about>
         <p>quick start:</p>
         <ol>
           <li>
-            enter a <span className="highlight">username</span>, select your{' '}
-            <span className="highlight">age range</span>, and write whatever you
-            want in the <span className="highlight">text box</span>
+            fill out your <span className="highlight">info</span>, and write
+            whatever tea you want to spill in the{' '}
+            <span className="highlight">text box</span>
           </li>
           <li>
-            submit your <span className="highlight">juicy confession</span>
+            submit the <span className="highlight">juicy confession</span>
           </li>
           <li>
             see it posted on the{' '}
             <span className="highlight">wall of secrets</span>
           </li>
           <li>
-            <span className="highlight">click</span> the confession to see more
-            details
+            <span className="highlight">click</span> the confession to see it in
+            all its glory
           </li>
           <li>
-            click outside the dialog and feel proud that you&apos;ve just posted
-            your <span className="highlight">deepest, darkest secret</span> for
-            the whole world to see...
+            close the pop-up and feel proud that you&apos;ve just posted your{' '}
+            <span className="highlight">deepest, darkest secret</span> for the
+            whole world to see... what have you just done?!
           </li>
-          <li>what have you just done?!</li>
           <li>
-            <span className="highlight">hover</span> over your confession to
-            find the <span className="highlight">delete button</span> and click
-            it
+            <span className="highlight">hover</span> over your confession and
+            click the <span className="highlight">delete button</span>
           </li>
           <li>do it all over again</li>
         </ol>

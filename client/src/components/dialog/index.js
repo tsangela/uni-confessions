@@ -58,10 +58,14 @@ const Dialog = () => {
           />
         </div>
         <span className="message-date">{date}</span>
-        <div className="user-info">
-          <span className="message-username">{username}</span>
-          <span className="message-age">{age}</span>
-          <span className="message-university">{university.toUpperCase()}</span>
+        <div className="message-user-info">
+          <div>
+            <span className="message-username">{username}</span>
+            <span className="message-age">{age}</span>
+          </div>
+          <span className={`message-university ${university}`}>
+            {university.toUpperCase()}
+          </span>
         </div>
         <span>{text}</span>
         <Clipboard text={text} />
