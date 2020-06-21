@@ -111,6 +111,10 @@ li {
   margin: 5px 0;
 }
 
+:focus {
+  outline: none;
+}
+
 .nav {
   z-index: 1;
   width: 100%;
