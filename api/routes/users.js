@@ -1,19 +1,12 @@
+const { CONNECTION_STRING, DB_NAME } = require('./utils/constants');
+const { isValidItem } = require('./utils/helpers');
+const MongoClient = require('mongodb').MongoClient;
 var express = require('express');
 var router = express.Router();
 
-// header fields
-const CONTENT_TYPE = 'Content-Type';
-const APPLICATION_JSON = 'application/json';
-
 // mongo
-const MongoClient = require('mongodb').MongoClient;
-const CONNECTION_STRING = 'mongodb+srv://m001-student:m001-mongodb-basics@sandbox-wz7vl.mongodb.net/Sandbox?retryWrites=true&w=majority';
-const DB_NAME = 'messageBoard';
 const COLL_NAME = 'users';
-
-const STRING_SORTED_KEYS = '_id,age,university,username';
-
-const toSortedString = (array) => array.sort().toString();
+const STRING_SORTED_KEYS = 'age,university,username';
 
 MongoClient.connect(CONNECTION_STRING, { useUnifiedTopology: true }, (err, client) => {
   if (err) return console.error(err);
@@ -24,39 +17,37 @@ MongoClient.connect(CONNECTION_STRING, { useUnifiedTopology: true }, (err, clien
 
   /* GET users listing. */
   router.get('/', (req, res, next) => {
+    // retrieve all users
     usersCollection.find().toArray()
-      .then(users => {
-        res.setHeader(CONTENT_TYPE, APPLICATION_JSON);
-        res.send(users);
-      })
-      .catch(err => console.error(err));
+      .then(users => res.status(200).json(users))
+      .catch(err => res.status(500).json({ errorMessage: err.message }));
   });
 
   /* GET user with username. */
   router.get('/:username', (req, res, next) => {
+    // filter by username
     usersCollection.find({ 'username': req.params.username }).toArray()
-      .then(user => {
-        res.setHeader(CONTENT_TYPE, APPLICATION_JSON);
-        res.send(user);
-      })
-      .catch(err => console.error(err));
+      .then(user => res.status(200).json(user))
+      .catch(err => res.status(500).json({ errorMessage: err.message }));
   });
 
   /* POST user. */
   router.post('/', (req, res, next) => {
     const user = req.body;
-    console.log(user);
-    console.log(toSortedString(Object.keys(user)));
-    if (user && toSortedString(Object.keys(user)) === STRING_SORTED_KEYS) {
-      console.log('yup');
-      // messagesCollection.insertOne(user)
-      //   .then(message => {
-      //     res.setHeader(CONTENT_TYPE, APPLICATION_JSON);
-      //     res.send(user);
-      //   })
-      //   .catch(err => console.error(err));
+
+    // validate user model
+    if (!isValidItem(user, STRING_SORTED_KEYS)) {
+      // 400 Bad Request
+      return res.status(400).json({ errorMessage: 'Invalid message format.' });
     }
-    res.send(user);
+
+    // insert into database
+    usersCollection.insertOne(user)
+      // 201 Created
+      .then(user => res.status(201).json(user))
+      // 500 Internal Server Error
+      .catch(err => res.status(500).json({ errorMessage: err.message }));
+
   }); 
 });
 

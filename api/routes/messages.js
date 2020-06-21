@@ -1,13 +1,11 @@
-const { isValidItem } = require('./utils/utils');
+const { CONNECTION_STRING, DB_NAME } = require('./utils/constants');
+const { isValidItem } = require('./utils/helpers');
+const MongoClient = require('mongodb').MongoClient;
 const express = require('express');
 const router = express.Router();
-const MongoClient = require('mongodb').MongoClient;
 
 // mongo
-const CONNECTION_STRING = 'mongodb+srv://m001-student:m001-mongodb-basics@sandbox-wz7vl.mongodb.net/Sandbox?retryWrites=true&w=majority';
-const DB_NAME = 'messageBoard';
 const COLL_NAME = 'messages';
-
 const STRING_SORTED_KEYS = 'date,id,text,username';
 
 MongoClient.connect(CONNECTION_STRING, { useUnifiedTopology: true }, (err, client) => {
@@ -40,7 +38,7 @@ MongoClient.connect(CONNECTION_STRING, { useUnifiedTopology: true }, (err, clien
     // validate message model
     if (!isValidItem(message, STRING_SORTED_KEYS)) {
       // 400 Bad Request
-      return res.status(400).json({ errorMessage: "Invalid message format." });
+      return res.status(400).json({ errorMessage: 'Invalid message format.' });
     }
 
     // insert into database
