@@ -57,11 +57,15 @@ const Confession = ({ id, date, username, age, university, text }) => {
         >
           -
         </span>
-        <span className="message-username">{username}</span>
-        <span className="message-age">{age}</span>
-        <span className={`message-university ${university}`}>
-          {university.toUpperCase()}
-        </span>
+        <div className="message-metadata">
+          <div>
+            <span className="message-username">{username}</span>
+            <span className="message-age">{age}</span>
+          </div>
+          <span className={`message-university ${university}`}>
+            {university.toUpperCase()}
+          </span>
+        </div>
         <p>{text}</p>
       </Message>
     </div>

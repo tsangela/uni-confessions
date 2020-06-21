@@ -112,7 +112,7 @@ li {
 }
 
 :focus {
-  /* outline: none; */
+  outline: none;
 }
 
 .nav {
@@ -158,14 +158,10 @@ li {
 }
 
 .nav-button:hover,
-.nav-button:focus {
+.nav-button:focus,
+.nav-button:active {
   background-color: white;
   color: #e29779;
-}
-
-.nav-hover:hover,
-.nav-hover:focus {
-  color: #94a89a;
 }
 
 .random-button {
@@ -211,7 +207,8 @@ li {
 }
 
 .message:hover,
-.message:focus {
+.message:focus,
+.message:active {
   -webkit-transform: scale(1.025);
   -moz-transform: scale(1.025);
   -ms-transform: scale(1.025);
@@ -291,7 +288,8 @@ dialog
 }
 
 .close:hover,
-.close:focus {
+.close:focus,
+.close:active {
   cursor: pointer;
   background: white;
   color: #e29779;
@@ -507,16 +505,35 @@ message board
 #modal-board {
   background: #fbf7f4;
   overflow-y: scroll;
+  margin-left: 0;
+}
+
+div.message-metadata {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .message-username {
   font-weight: bold;
   text-decoration: underline;
-  margin-right: 10px;
+}
+
+.message-age {
+  margin-left: 5px;
+}
+
+.message-age::before {
+  content: '(';
+}
+
+.message-age::after {
+  content: ')';
 }
 
 .message-university {
-  margin-left: 10px;
   padding: 2px 5px; /* padding: 2px; */
   font-size: x-small;
   color: white;
@@ -545,14 +562,6 @@ message board
 .message-university.uvic {
   background: #f5aa1c;
   border-color: #f5aa1c;
-}
-
-.message-age::before {
-  content: '(';
-}
-
-.message-age::after {
-  content: ')';
 }
 
 .message-date {
@@ -656,7 +665,7 @@ div.clear-messages-wrapper {
     font-size: large;
   }
 
-  #modal-board {
+  .modal {
     height: 450px;
   }
 
