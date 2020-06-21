@@ -112,7 +112,7 @@ li {
 }
 
 :focus {
-  outline: none;
+  /* outline: none; */
 }
 
 .nav {
@@ -157,12 +157,14 @@ li {
   transition: 0.2s ease;
 }
 
-.nav-button:hover {
+.nav-button:hover,
+.nav-button:focus {
   background-color: white;
   color: #e29779;
 }
 
-.nav-hover:hover {
+.nav-hover:hover,
+.nav-hover:focus {
   color: #94a89a;
 }
 
@@ -208,7 +210,8 @@ li {
   cursor: pointer;
 }
 
-.message:hover {
+.message:hover,
+.message:focus {
   -webkit-transform: scale(1.025);
   -moz-transform: scale(1.025);
   -ms-transform: scale(1.025);
@@ -287,7 +290,8 @@ dialog
   content: 'x';
 }
 
-.close:hover {
+.close:hover,
+.close:focus {
   cursor: pointer;
   background: white;
   color: #e29779;

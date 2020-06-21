@@ -1,91 +1,79 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React from 'react';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { PropTypes } from 'prop-types';
-import { deleteMessage, deselectMessage } from '../../redux/actions/messages';
+import { deselectMessage } from '../../redux/actions/messages';
 import Clipboard from './clipboard';
 
-class Dialog extends React.Component {
-  constructor(props) {
-    super(props);
-    this.dialogRef = React.createRef();
-  }
+const Dialog = () => {
+  const dispatch = useDispatch();
+  const messages = useSelector((state) => state.messageReducer.messages);
+  const selectedId = useSelector((state) => state.messageReducer.selectedId);
 
-  getMessage = (messages, selectedId) => {
+  const getMessage = (selectedId) => {
     const selectedMessage = messages.filter(
       (message) => selectedId === message.id
     );
-    return selectedMessage && selectedMessage.length === 1
+    return selectedMessage && selectedMessage.length > 0
       ? selectedMessage[0]
       : null;
   };
 
-  handleClose = () => {
-    const { deselectMessage } = this.props;
-    deselectMessage();
+  const handleClose = () => {
+    dispatch(deselectMessage());
   };
 
-  render() {
-    const { messages, selectedId } = this.props;
-
-    // nothing selected
-    if (!selectedId) {
-      return null;
+  const handleKey = (event) => {
+    // enter key
+    if (event.key === 'Enter') {
+      handleClose();
     }
-
-    // retrieve selected message
-    const selectedMessage = this.getMessage(messages, selectedId);
-    const { id, date, username, age, university, text } = selectedMessage;
-
-    // render dialog with message metadata
-    return (
-      <div className="center-wrapper dialog-container">
-        <div className="dialog-overlay" onClick={this.handleClose} />
-        <div className="modal dialog delete-container">
-          <div className="title-bar">
-            <span
-              id={`${id}_close`}
-              className="close"
-              title="close"
-              role="button"
-              aria-label="close button"
-              tabIndex={0}
-              onClick={this.handleClose}
-              onKeyDown={this.handleClose}
-            />
-          </div>
-          <span className="message-date">{date}</span>
-          <div className="user-info">
-            <span className="message-username">{username}</span>
-            <span className="message-age">{age}</span>
-            <span className="message-university">
-              {university.toUpperCase()}
-            </span>
-          </div>
-          <span>{text}</span>
-          <Clipboard text={text} />
-        </div>
-      </div>
-    );
-  }
-}
-
-const mapStateToProps = (state) => {
-  return {
-    messages: state.messageReducer.messages,
-    selectedId: state.messageReducer.selectedId,
   };
+
+  // nothing selected
+  if (!selectedId) {
+    return null;
+  }
+
+  // retrieve selected message
+  const selectedMessage = getMessage(selectedId);
+  const { id, date, username, age, university, text } = selectedMessage;
+
+  // render dialog with message metadata
+  return (
+    <div className="center-wrapper dialog-container">
+      <div className="dialog-overlay" onClick={handleClose} />
+      <div className="modal dialog delete-container">
+        <div className="title-bar">
+          <span
+            id={`${id}_close`}
+            className="close"
+            title="close"
+            role="button"
+            aria-label="close button"
+            tabIndex={0}
+            onClick={handleClose}
+            onKeyDown={handleKey}
+          />
+        </div>
+        <span className="message-date">{date}</span>
+        <div className="user-info">
+          <span className="message-username">{username}</span>
+          <span className="message-age">{age}</span>
+          <span className="message-university">{university.toUpperCase()}</span>
+        </div>
+        <span>{text}</span>
+        <Clipboard text={text} />
+      </div>
+    </div>
+  );
 };
 
-export default connect(mapStateToProps, { deleteMessage, deselectMessage })(
-  Dialog
-);
+export default Dialog;
 
 Dialog.propTypes = {
-  messages: PropTypes.arrayOf(PropTypes.object).isRequired,
   selectedId: PropTypes.string,
-  deselectMessage: PropTypes.func.isRequired,
 };
 
 Dialog.defaultProps = {

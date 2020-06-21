@@ -51,6 +51,6 @@ export default withRouter(
 
 RandomButton.propTypes = {
   path: PropTypes.string.isRequired,
-  messages: PropTypes.string.isRequired,
+  messages: PropTypes.arrayOf(PropTypes.object).isRequired,
   selectMessage: PropTypes.func.isRequired,
 };

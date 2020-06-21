@@ -1,80 +1,72 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React, { useState } from 'react';
+import { connect, useDispatch } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import Message from './message';
 import { deleteMessage, selectMessage } from '../../redux/actions/messages';
 
-class Confession extends React.Component {
-  constructor(props) {
-    super(props);
-    this.deleteButtonRef = React.createRef();
-    this.state = {
-      deleting: false,
-    };
-  }
+const Confession = ({ id, date, username, age, university, text }) => {
+  const dispatch = useDispatch();
+  const [deleting, setDeleting] = useState(false);
+  const deleteButtonRef = React.useRef(null);
 
-  setDeleteButtonRef = (ref) => {
-    this.deleteButtonRef = ref;
-  };
-
-  handleSelect = (event, id) => {
-    const { selectMessage } = this.props;
+  const handleSelect = (event, id) => {
     // don't show details when delete button is clicked
-    if (this.deleteButtonRef && !this.deleteButtonRef.contains(event.target)) {
-      selectMessage(id);
+    if (deleteButtonRef && !deleteButtonRef.current.contains(event.target)) {
+      dispatch(selectMessage(id));
     }
   };
 
-  handleDelete = (id) => {
+  const handleDelete = (id) => {
     // trigger delete animation
-    const { deleting } = this.state;
     if (!deleting) {
-      this.setState({ deleting: true });
+      setDeleting(true);
     }
 
     // wait for animation to complete before deleting
-    const { deleteMessage } = this.props;
     setTimeout(() => {
-      deleteMessage(id);
+      dispatch(deleteMessage(id));
     }, 500);
   };
 
-  render() {
-    const { deleting } = this.state;
-    const { id, date, username, age, university, text } = this.props;
-    return (
-      <div
-        className={`delete-container${deleting ? ' deleting' : ''}`}
-        title={date}
-        role="button"
-        tabIndex={0}
-        onClick={(event) => this.handleSelect(event, id)}
-        onKeyDown={(event) => this.handleSelect(event, id)}
-      >
-        <Message id={id}>
-          <span
-            ref={this.setDeleteButtonRef}
-            id={`${id}_delete`}
-            className="delete"
-            role="button"
-            aria-label="delete message"
-            tabIndex={0}
-            onClick={() => this.handleDelete(id)}
-            onKeyDown={() => this.handleDelete(id)}
-          >
-            -
-          </span>
-          <span className="message-username">{username}</span>
-          <span className="message-age">{age}</span>
-          <span className={`message-university ${university}`}>
-            {university.toUpperCase()}
-          </span>
-          <p>{text}</p>
-        </Message>
-      </div>
-    );
-  }
-}
+  const handleKey = (event, fn, id) => {
+    // enter key
+    if (event.key === 'Enter') {
+      fn(event, id);
+    }
+  };
+
+  return (
+    <div
+      className={`delete-container${deleting ? ' deleting' : ''}`}
+      title={date}
+      role="button"
+      tabIndex={0}
+      onClick={(event) => handleSelect(event, id)}
+      onKeyDown={(event) => handleKey(event, handleSelect, id)}
+    >
+      <Message id={id}>
+        <span
+          ref={deleteButtonRef}
+          id={`${id}_delete`}
+          className="delete"
+          role="button"
+          aria-label="delete message"
+          tabIndex={0}
+          onClick={() => handleDelete(id)}
+          onKeyDown={(event) => handleKey(event, handleDelete, id)}
+        >
+          -
+        </span>
+        <span className="message-username">{username}</span>
+        <span className="message-age">{age}</span>
+        <span className={`message-university ${university}`}>
+          {university.toUpperCase()}
+        </span>
+        <p>{text}</p>
+      </Message>
+    </div>
+  );
+};
 
 const mapStateToProps = (state) => {
   return { messages: state.messageReducer.messages };
