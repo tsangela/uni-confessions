@@ -2,7 +2,10 @@ import React, { useState } from 'react';
 import { connect, useDispatch } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import Message from './message';
-import { deleteMessage, selectMessage } from '../../redux/actions/messages';
+import {
+  deleteMessage,
+  selectMessage,
+} from '../../redux/actions/messageActions';
 
 const Confession = ({ id, date, username, age, university, text }) => {
   const dispatch = useDispatch();

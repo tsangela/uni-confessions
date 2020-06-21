@@ -3,7 +3,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { PropTypes } from 'prop-types';
-import { deselectMessage } from '../../redux/actions/messages';
+import { deselectMessage } from '../../redux/actions/messageActions';
 import Clipboard from './clipboard';
 
 const Dialog = () => {

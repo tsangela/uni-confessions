@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteMessage } from '../../redux/actions/messages';
+import { deleteMessage } from '../../redux/actions/messageActions';
 import Confession from '../common/confession';
 
 const Board = () => {

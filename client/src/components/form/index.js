@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import uuid from 'react-uuid';
 import { useDispatch } from 'react-redux';
-import { addMessage } from '../../redux/actions/messages';
+import { addMessage } from '../../redux/actions/messageActions';
 import options from '../../resources/options.json';
 
 const NONE = '--';

@@ -665,7 +665,7 @@ div.clear-messages-wrapper {
     font-size: large;
   }
 
-  .modal {
+  #modal-board {
     height: 450px;
   }
 

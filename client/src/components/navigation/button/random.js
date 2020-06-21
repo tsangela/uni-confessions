@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { withRouter } from 'react-router';
 import { useHistory } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
-import { selectMessage } from '../../../redux/actions/messages';
+import { selectMessage } from '../../../redux/actions/messageActions';
 import { getName, paths } from '../../../resources/paths';
 
 const RandomButton = ({ path }) => {
