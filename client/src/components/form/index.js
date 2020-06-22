@@ -3,7 +3,7 @@ import uuid from 'react-uuid';
 import { useDispatch } from 'react-redux';
 import { addMessage } from '../../redux/actions/messageActions';
 import options from '../../resources/options.json';
-import { POST_MESSAGE } from '../../resources/api';
+import { MESSAGES_ENDPOINT } from '../../resources/api';
 
 const NONE = '--';
 const DEFAULT_STATE = {
@@ -51,13 +51,15 @@ const Form = () => {
     // construct new message
     const newMessage = { id, date, username, age, university, text };
 
-    // add message to database and update redux state
+    // construct post request
     const request = {
-      method: 'post',
+      method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(newMessage),
     };
-    fetch(POST_MESSAGE, request)
+
+    // add message to database and update redux state
+    fetch(MESSAGES_ENDPOINT, request)
       .then((res) => res.json())
       .then((res) => dispatch(addMessage(newMessage)));
 

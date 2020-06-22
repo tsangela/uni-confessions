@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { deleteMessage, getMessages } from '../../redux/actions/messageActions';
 import Confession from '../common/confession';
 import Empty from './empty';
-import { GET_MESSAGES } from '../../resources/api';
+import { MESSAGES_ENDPOINT } from '../../resources/api';
 import Loader from '../common/loader';
 
 const Board = () => {
@@ -13,7 +13,7 @@ const Board = () => {
   const [isFetching, setIsFetching] = useState(true);
 
   useEffect(() => {
-    fetch(GET_MESSAGES)
+    fetch(MESSAGES_ENDPOINT)
       .then((res) => res.json())
       .then((res) => {
         if (res) {
@@ -32,14 +32,19 @@ const Board = () => {
       setIsDeleting(true);
     }
 
-    // iterate all messages
-    const ids = messages && messages.map((message) => message.id);
+    // construct delete request
+    const request = { method: 'DELETE' };
 
-    // wait for animation to complete before deleting
-    setTimeout(() => {
-      ids.forEach((id) => dispatch(deleteMessage(id))); // delete all messages
-      setIsDeleting(false); // reset the state for the next time the board is cleared
-    }, 500);
+    // delete message with matching id from database
+    fetch(MESSAGES_ENDPOINT, request).then((res) => {
+      // iterate all messages
+      const ids = messages && messages.map((message) => message.id);
+      // wait for animation to complete before deleting
+      setTimeout(() => {
+        ids.forEach((id) => dispatch(deleteMessage(id))); // delete all messages
+        setIsDeleting(false); // reset the state for the next time the board is cleared
+      }, 500);
+    });
   };
 
   const handleKey = (event) => {

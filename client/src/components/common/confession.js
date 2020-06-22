@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import Message from './message';
+import { MESSAGES_ENDPOINT } from '../../resources/api';
 import {
   deleteMessage,
   selectMessage,
@@ -25,10 +26,16 @@ const Confession = ({ id, date, username, age, university, text }) => {
       setDeleting(true);
     }
 
-    // wait for animation to complete before deleting
-    setTimeout(() => {
-      dispatch(deleteMessage(id));
-    }, 500);
+    // construct delete request
+    const request = { method: 'DELETE' };
+
+    // delete message with matching id from database
+    fetch(`${MESSAGES_ENDPOINT}/${id}`, request).then((res) =>
+      // wait for delete animation to finish
+      setTimeout(() => {
+        dispatch(deleteMessage(id));
+      }, 500)
+    );
   };
 
   const handleKey = (event, fn, id) => {
