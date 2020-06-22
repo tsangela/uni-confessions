@@ -15,15 +15,9 @@ const Board = () => {
   useEffect(() => {
     fetch(MESSAGES_ENDPOINT)
       .then((res) => res.json())
-      .then((res) => {
-        if (res) {
-          dispatch(getMessages(res));
-        }
-      })
+      .then((res) => res && dispatch(getMessages(res)))
       .then(() => setIsFetching(false))
-      .catch((err) => {
-        console.error(err);
-      });
+      .catch((err) => console.error(err));
   }, [dispatch]);
 
   const handleClick = () => {
@@ -75,7 +69,7 @@ const Board = () => {
         }`}
       >
         {isFetching ? (
-          <Loader />
+          <Loader size="3x" color="#94a89a" />
         ) : (
           messages &&
           (messages.length > 0 ? (

@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { addMessage } from '../../redux/actions/messageActions';
 import options from '../../resources/options.json';
 import { MESSAGES_ENDPOINT } from '../../resources/api';
+import Loader from '../common/loader';
 
 const NONE = '--';
 const DEFAULT_STATE = {
@@ -14,16 +15,16 @@ const DEFAULT_STATE = {
 };
 
 const Form = () => {
+  const [isFetching, setIsFetching] = useState(false);
   const [message, setMessage] = useState(DEFAULT_STATE);
   const dispatch = useDispatch();
   const formRef = React.useRef(null);
 
   const clearForm = () => {
-    // reset state
-    setMessage(DEFAULT_STATE);
-
     // clear form
     formRef.current.reset();
+    // reset state
+    setMessage(DEFAULT_STATE);
   };
 
   const handleInput = (event) => {
@@ -58,10 +59,15 @@ const Form = () => {
       body: JSON.stringify(newMessage),
     };
 
+    // start fetching
+    setIsFetching(true);
+
     // add message to database and update redux state
     fetch(MESSAGES_ENDPOINT, request)
       .then((res) => res.json())
-      .then((res) => dispatch(addMessage(newMessage)));
+      .then((res) => res && dispatch(addMessage(newMessage)))
+      .then((res) => setIsFetching(false))
+      .catch((err) => console.error(err));
 
     // clear form
     clearForm();
@@ -97,9 +103,7 @@ const Form = () => {
               value={message.age}
               onChange={handleInput}
             >
-              <option disabled value={NONE}>
-                {NONE}
-              </option>
+              <option value={NONE}>{NONE}</option>
               {options.ageRanges.map((age) => (
                 <option key={age} value={age}>
                   {age}
@@ -115,9 +119,7 @@ const Form = () => {
               value={message.university}
               onChange={handleInput}
             >
-              <option disabled value={NONE}>
-                {NONE}
-              </option>
+              <option value={NONE}>{NONE}</option>
               {options.universities.map((uni) => (
                 <option key={uni} value={uni}>
                   {uni}
@@ -157,7 +159,7 @@ const Form = () => {
             onClick={handleSubmit}
             onKeyDown={(event) => handleKey(event, handleSubmit)}
           >
-            post
+            {isFetching ? <Loader /> : 'post'}
           </div>
         </div>
       </form>
