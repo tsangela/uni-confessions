@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { deleteMessage, getMessages } from '../../redux/actions/messageActions';
 import Confession from '../common/confession';
 import Empty from './empty';
-import { GET_ALL_MESSAGES } from '../../resources/api';
+import { GET_MESSAGES } from '../../resources/api';
 import Loader from '../common/loader';
 
 const Board = () => {
@@ -13,7 +13,7 @@ const Board = () => {
   const [isFetching, setIsFetching] = useState(true);
 
   useEffect(() => {
-    fetch(GET_ALL_MESSAGES)
+    fetch(GET_MESSAGES)
       .then((res) => res.json())
       .then((res) => {
         if (res) {

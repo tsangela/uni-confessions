@@ -4,4 +4,5 @@ const MESSAGES_PATH = '/messages';
 
 const USERS_PATH = '/users';
 
-export const GET_ALL_MESSAGES = `${BASE_URL}${MESSAGES_PATH}`;
+export const GET_MESSAGES = `${BASE_URL}${MESSAGES_PATH}`;
+export const POST_MESSAGE = `${BASE_URL}${MESSAGES_PATH}`;

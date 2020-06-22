@@ -6,7 +6,7 @@ const router = express.Router();
 
 // mongo
 const COLL_NAME = 'messages';
-const STRING_SORTED_KEYS = 'date,id,text,username';
+const STRING_SORTED_KEYS = "age,date,id,text,university,username";
 
 MongoClient.connect(CONNECTION_STRING, { useUnifiedTopology: true }, (err, client) => {
   if (err) return console.error(err);

@@ -17,7 +17,7 @@ const messageReducer = (state = INITIAL_STATE, action) => {
     case messageTypes.ADD_MESSAGE:
       // add message to beginning of list
       return {
-        messages: [action.message, ...state.messages],
+        messages: [...state.messages, action.message],
         selectedId: state.selectedId,
       };
 

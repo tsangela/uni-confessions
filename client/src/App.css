@@ -223,7 +223,7 @@ li {
 .message {
   position: relative;
   padding: 5px;
-  margin: 10px 0;
+  margin: 5px 0;
   border-radius: 0 5px 0 5px;
   border: 1px solid #94a89a;
   border-top: 20px solid #94a89a;
@@ -580,6 +580,11 @@ message board
   overflow-y: scroll;
   margin-left: 0;
   min-height: 450px;
+}
+
+div.message-container {
+  display: flex;
+  flex-direction: column-reverse;
 }
 
 div.message-user-info {
