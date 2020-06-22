@@ -159,7 +159,7 @@ const Form = () => {
             onClick={handleSubmit}
             onKeyDown={(event) => handleKey(event, handleSubmit)}
           >
-            {isFetching ? <Loader /> : 'post'}
+            {isFetching ? <Loader color="white" /> : 'post'}
           </div>
         </div>
       </form>

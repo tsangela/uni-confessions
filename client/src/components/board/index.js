@@ -10,13 +10,14 @@ const Board = () => {
   const messages = useSelector((state) => state.messageReducer.messages);
   const dispatch = useDispatch();
   const [isDeleting, setIsDeleting] = useState(false);
-  const [isFetching, setIsFetching] = useState(true);
+  const [isFetchingGet, setIsFetchingGet] = useState(true);
+  const [isFetchingDelete, setIsFetchingDelete] = useState(false);
 
   useEffect(() => {
     fetch(MESSAGES_ENDPOINT)
       .then((res) => res.json())
       .then((res) => res && dispatch(getMessages(res)))
-      .then(() => setIsFetching(false))
+      .then(() => setIsFetchingGet(false))
       .catch((err) => console.error(err));
   }, [dispatch]);
 
@@ -29,6 +30,9 @@ const Board = () => {
     // construct delete request
     const request = { method: 'DELETE' };
 
+    // start fetching
+    setIsFetchingDelete(true);
+
     // delete message with matching id from database
     fetch(MESSAGES_ENDPOINT, request).then((res) => {
       // iterate all messages
@@ -38,6 +42,8 @@ const Board = () => {
         ids.forEach((id) => dispatch(deleteMessage(id))); // delete all messages
         setIsDeleting(false); // reset the state for the next time the board is cleared
       }, 500);
+
+      setIsFetchingDelete(false);
     });
   };
 
@@ -60,7 +66,7 @@ const Board = () => {
           onClick={handleClick}
           onKeyDown={handleKey}
         >
-          clear all
+          {isFetchingDelete ? 'clea' : 'clear all'}
         </span>
       </div>
       <div
@@ -68,8 +74,8 @@ const Board = () => {
           isDeleting && messages.length !== 0 ? ' deleting' : ''
         }`}
       >
-        {isFetching ? (
-          <Loader size="3x" color="#94a89a" />
+        {isFetchingGet ? (
+          <Loader size="3x" />
         ) : (
           messages &&
           (messages.length > 0 ? (
