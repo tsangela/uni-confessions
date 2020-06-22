@@ -1,8 +1,9 @@
 import { messageTypes } from './types';
 
-export const loadMessages = () => {
+export const getMessages = (messages) => {
   return {
-    type: messageTypes.LOAD_MESSAGES,
+    type: messageTypes.GET_MESSAGES,
+    messages,
   };
 };
 
@@ -33,8 +34,8 @@ export const deselectMessage = () => {
   };
 };
 
-export const clearBoard = () => {
+export const deleteAllMessages = () => {
   return {
-    type: messageTypes.CLEAR_BOARD,
+    type: messageTypes.DELETE_ALL_MESSAGES,
   };
 };

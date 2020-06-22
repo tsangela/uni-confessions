@@ -1,25 +1,35 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  deleteMessage,
-  loadMessages,
-} from '../../redux/actions/messageActions';
+import { deleteMessage, getMessages } from '../../redux/actions/messageActions';
 import Confession from '../common/confession';
 import Empty from './empty';
+import { GET_ALL_MESSAGES } from '../../resources/api';
+import Loader from '../common/loader';
 
 const Board = () => {
   const messages = useSelector((state) => state.messageReducer.messages);
   const dispatch = useDispatch();
-  const [deleting, setDeleting] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [isFetching, setIsFetching] = useState(true);
 
   useEffect(() => {
-    dispatch(loadMessages());
-  });
+    fetch(GET_ALL_MESSAGES)
+      .then((res) => res.json())
+      .then((res) => {
+        if (res) {
+          dispatch(getMessages(res));
+        }
+      })
+      .then(() => setIsFetching(false))
+      .catch((err) => {
+        console.error(err);
+      });
+  }, [dispatch]);
 
   const handleClick = () => {
     // trigger delete animation
-    if (!deleting) {
-      setDeleting(true);
+    if (!isDeleting) {
+      setIsDeleting(true);
     }
 
     // iterate all messages
@@ -28,7 +38,7 @@ const Board = () => {
     // wait for animation to complete before deleting
     setTimeout(() => {
       ids.forEach((id) => dispatch(deleteMessage(id))); // delete all messages
-      setDeleting(false); // reset the state for the next time the board is cleared
+      setIsDeleting(false); // reset the state for the next time the board is cleared
     }, 500);
   };
 
@@ -56,10 +66,13 @@ const Board = () => {
       </div>
       <div
         className={`message-container${
-          deleting && messages.length !== 0 ? ' deleting' : ''
+          isDeleting && messages.length !== 0 ? ' deleting' : ''
         }`}
       >
-        {messages &&
+        {isFetching ? (
+          <Loader />
+        ) : (
+          messages &&
           (messages.length > 0 ? (
             messages.map((message) => (
               <Confession
@@ -74,7 +87,8 @@ const Board = () => {
             ))
           ) : (
             <Empty />
-          ))}
+          ))
+        )}
       </div>
     </div>
   );

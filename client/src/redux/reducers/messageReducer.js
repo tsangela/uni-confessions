@@ -1,23 +1,16 @@
 import { messageTypes } from '../actions/types';
-import { getAllMessages } from '../../resources/api';
-import Default from '../../resources/default.json';
 
 const INITIAL_STATE = {
-  loadMessages: {
-    isPending: false,
-    isSuccess: false,
-    isFailure: false,
-  },
   messages: [],
   selectedId: null,
 };
 
 const messageReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case messageTypes.LOAD_MESSAGES:
-      // load messages from database
+    case messageTypes.GET_MESSAGES:
+      // cache messages from database
       return {
-        messages: [],
+        messages: action.messages,
         selectedId: state.selectedId,
       };
 
@@ -49,7 +42,7 @@ const messageReducer = (state = INITIAL_STATE, action) => {
         selectedId: null,
       };
 
-    case messageTypes.CLEAR_BOARD:
+    case messageTypes.DELETE_ALL_MESSAGES:
       // set messages to empty list
       return {
         messages: [],
