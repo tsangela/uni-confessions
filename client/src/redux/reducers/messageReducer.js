@@ -1,13 +1,26 @@
 import { messageTypes } from '../actions/types';
+import { getAllMessages } from '../../resources/api';
 import Default from '../../resources/default.json';
 
-const initialState = {
-  messages: Default.messages,
+const INITIAL_STATE = {
+  loadMessages: {
+    isPending: false,
+    isSuccess: false,
+    isFailure: false,
+  },
+  messages: [],
   selectedId: null,
 };
 
-const messageReducer = (state = initialState, action) => {
+const messageReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    case messageTypes.LOAD_MESSAGES:
+      // load messages from database
+      return {
+        messages: [],
+        selectedId: state.selectedId,
+      };
+
     case messageTypes.ADD_MESSAGE:
       // add message to beginning of list
       return {
@@ -45,7 +58,7 @@ const messageReducer = (state = initialState, action) => {
 
     default:
       // default messages
-      return initialState;
+      return INITIAL_STATE;
   }
 };
 

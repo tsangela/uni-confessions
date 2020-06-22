@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { connect, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import Message from './message';
 import {
@@ -75,13 +75,7 @@ const Confession = ({ id, date, username, age, university, text }) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return { messages: state.messageReducer.messages };
-};
-
-export default connect(mapStateToProps, { selectMessage, deleteMessage })(
-  Confession
-);
+export default Confession;
 
 Confession.propTypes = {
   id: PropTypes.string.isRequired,
@@ -90,6 +84,4 @@ Confession.propTypes = {
   age: PropTypes.string.isRequired,
   university: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
-  selectMessage: PropTypes.func.isRequired,
-  deleteMessage: PropTypes.func.isRequired,
 };

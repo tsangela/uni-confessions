@@ -1,5 +1,11 @@
 import { messageTypes } from './types';
 
+export const loadMessages = () => {
+  return {
+    type: messageTypes.LOAD_MESSAGES,
+  };
+};
+
 export const addMessage = (message) => {
   return {
     type: messageTypes.ADD_MESSAGE,

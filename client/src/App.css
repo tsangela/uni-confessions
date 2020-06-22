@@ -216,6 +216,26 @@ li {
   transform: scale(1.025);
 }
 
+div.empty {
+  text-align: center;
+  cursor: crosshair;
+  color: #94a89a;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.empty-image {
+  font-size: 50px;
+}
+
+.empty-title {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
 /*
 dialog
 */
@@ -509,6 +529,7 @@ message board
   background: #fbf7f4;
   overflow-y: scroll;
   margin-left: 0;
+  min-height: 450px;
 }
 
 div.message-user-info {

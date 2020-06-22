@@ -1,12 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteMessage } from '../../redux/actions/messageActions';
+import {
+  deleteMessage,
+  loadMessages,
+} from '../../redux/actions/messageActions';
 import Confession from '../common/confession';
+import Empty from './empty';
 
 const Board = () => {
   const messages = useSelector((state) => state.messageReducer.messages);
   const dispatch = useDispatch();
   const [deleting, setDeleting] = useState(false);
+
+  useEffect(() => {
+    dispatch(loadMessages());
+  });
 
   const handleClick = () => {
     // trigger delete animation
@@ -52,16 +60,20 @@ const Board = () => {
         }`}
       >
         {messages &&
-          messages.map((message) => (
-            <Confession
-              key={message.id}
-              id={message.id}
-              date={message.date}
-              username={message.username}
-              age={message.age}
-              university={message.university}
-              text={message.text}
-            />
+          (messages.length > 0 ? (
+            messages.map((message) => (
+              <Confession
+                key={message.id}
+                id={message.id}
+                date={message.date}
+                username={message.username}
+                age={message.age}
+                university={message.university}
+                text={message.text}
+              />
+            ))
+          ) : (
+            <Empty />
           ))}
       </div>
     </div>
