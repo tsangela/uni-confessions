@@ -66,7 +66,7 @@ const Board = () => {
           onClick={handleClick}
           onKeyDown={handleKey}
         >
-          {isFetchingDelete ? 'clea' : 'clear all'}
+          {isFetchingDelete ? 'clearing...' : 'clear all'}
         </span>
       </div>
       <div
