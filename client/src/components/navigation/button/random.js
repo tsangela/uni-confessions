@@ -13,19 +13,29 @@ const RandomButton = ({ path }) => {
   const name = getName(path);
 
   const handleClick = () => {
+    // no messages to choose from
+    if (!messages || messages.length <= 0) {
+      alert('no messages to view! 😧');
+    }
+
     // pick a random message
     const index = Math.floor(Math.random() * Math.floor(messages.length));
 
-    // invalid message
-    if (!(messages && Array.isArray(messages) && messages[index])) {
-      return;
+    // validate message
+    if (messages && Array.isArray(messages) && messages[index]) {
+      // redirect to message board
+      history.push(paths.HOME);
+
+      // select message
+      dispatch(selectMessage(messages[index]._id));
     }
+  };
 
-    // redirect to message board
-    history.push(paths.HOME);
-
-    // select message
-    dispatch(selectMessage(messages[index].id));
+  const handleKey = (event) => {
+    // enter key
+    if (event.key === 'Enter') {
+      handleClick(event);
+    }
   };
 
   return (
@@ -34,7 +44,7 @@ const RandomButton = ({ path }) => {
       aria-label="random confession"
       tabIndex={0}
       onClick={handleClick}
-      onKeyDown={handleClick}
+      onKeyDown={handleKey}
     >
       <span id={path} className="nav-button random-button" aria-label={path}>
         {name}

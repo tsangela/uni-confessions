@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Message = ({ id, children, about }) => {
+const Message = ({ _id, children, about }) => {
   return (
-    <div id={id} className={`message${about ? ' message-about' : ''}`}>
+    <div id={_id} className={`message${about ? ' message-about' : ''}`}>
       {children}
     </div>
   );

@@ -46,11 +46,12 @@ const Form = () => {
     // generate date and id
     const now = new Date();
     const date = now.toLocaleString();
-    const id = uuid();
-    // const id = `${username}_${now.getTime()}`;
+    const _id = uuid();
+    // const _id = `${username}_${now.getTime()}`;
+    const score = 0;
 
     // construct new message
-    const newMessage = { id, date, username, age, university, text };
+    const newMessage = { _id, date, username, age, university, text, score };
 
     // construct post request
     const request = {
@@ -66,7 +67,7 @@ const Form = () => {
     fetch(MESSAGES_ENDPOINT, request)
       .then((res) => res.json())
       .then((res) => res && dispatch(addMessage(newMessage)))
-      .then((res) => setIsFetching(false))
+      .then(() => setIsFetching(false))
       .catch((err) => console.error(err));
 
     // clear form
@@ -91,6 +92,7 @@ const Form = () => {
             id="username"
             name="username"
             placeholder="ex: anonymous"
+            maxLength="50"
             onBlur={handleInput}
           />
         </div>
@@ -135,6 +137,7 @@ const Form = () => {
             name="text"
             className="text-box"
             placeholder="type here..."
+            maxLength="600"
             onBlur={handleInput}
           />
         </div>

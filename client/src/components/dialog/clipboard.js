@@ -6,7 +6,11 @@ const CLIPBOARD_EMOJI = '📋';
 const CHECKMARK_EMOJI = '✅';
 
 const Clipboard = ({ text }) => {
-  const [copied, setCopied] = useState(false);
+  const [isCopied, setIdCopied] = useState(false);
+
+  const toFormattedText = (username, age, university, text) => {
+    // todo
+  };
 
   const handleClick = () => {
     // copy to clipboard
@@ -20,9 +24,9 @@ const Clipboard = ({ text }) => {
       });
 
     // animation
-    setCopied(true);
+    setIdCopied(true);
     setTimeout(() => {
-      setCopied(false);
+      setIdCopied(false);
     }, 1000);
   };
 
@@ -43,7 +47,7 @@ const Clipboard = ({ text }) => {
       onClick={handleClick}
       onKeyDown={handleKey}
     >
-      {copied ? (
+      {isCopied ? (
         <div className="copied">
           <Emoji input={CHECKMARK_EMOJI} />
           <i className="copied-text"> copied!</i>

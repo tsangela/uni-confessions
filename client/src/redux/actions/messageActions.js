@@ -14,17 +14,25 @@ export const addMessage = (message) => {
   };
 };
 
-export const deleteMessage = (id) => {
+export const updateMessageScore = (_id, score) => {
   return {
-    type: messageTypes.DELETE_MESSAGE,
-    id,
+    type: messageTypes.UPDATE_MESSAGE_SCORE,
+    _id,
+    score,
   };
 };
 
-export const selectMessage = (id) => {
+export const deleteMessage = (_id) => {
+  return {
+    type: messageTypes.DELETE_MESSAGE,
+    _id,
+  };
+};
+
+export const selectMessage = (_id) => {
   return {
     type: messageTypes.SELECT_MESSAGE,
-    id,
+    _id,
   };
 };
 

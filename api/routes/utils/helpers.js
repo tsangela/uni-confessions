@@ -1,17 +1,13 @@
-const CONNECTION_STRING = 'mongodb+srv://m001-student:m001-mongodb-basics@sandbox-wz7vl.mongodb.net/Sandbox?retryWrites=true&w=majority';
-
-const DB_NAME = 'messageBoard';
+const CONNECTION_STRING = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@sandbox-wz7vl.mongodb.net/Sandbox?retryWrites=true&w=majority`;
 
 const toSortedKeysString = (obj) => Object.keys(obj).sort().toString();
 
 const isValidItem = (item, expectedKeys) => {
-  // console.log(item, toSortedKeysString(item), expectedKeys); // todo(atsang): delete
   return item && toSortedKeysString(item) === expectedKeys;
-}
+};
 
 module.exports = {
-  CONNECTION_STRING,   
-  DB_NAME,
+  CONNECTION_STRING,
   toSortedKeysString,
   isValidItem,
-}
+};

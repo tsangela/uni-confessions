@@ -11,10 +11,8 @@ const Empty = () => {
   const [emoji, setEmoji] = useState(null);
 
   useEffect(() => {
-    if (!emoji) {
-      setEmoji(getRandomEmoji());
-    }
-  });
+    setEmoji(getRandomEmoji());
+  }, [emoji]);
 
   return (
     <div className="message empty">

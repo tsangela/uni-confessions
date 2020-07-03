@@ -272,8 +272,8 @@ div.empty {
 }
 
 .spinner {
-  color: #94a89a;
   animation: spin 2s linear infinite;
+  cursor: default;
 }
 
 .loader {
@@ -465,7 +465,7 @@ about
 }
 
 .connect-button:hover {
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
 }
 
 .highlight {
@@ -568,7 +568,7 @@ input#name {
 }
 
 .form-button:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 /*
@@ -587,6 +587,10 @@ div.message-container {
   flex-direction: column-reverse;
 }
 
+div.message-container .message {
+  border-top-width: 24px;
+}
+
 div.message-user-info {
   display: flex;
   flex-direction: row;
@@ -599,6 +603,7 @@ div.message-user-info {
 .message-username {
   font-weight: bold;
   text-decoration: underline;
+  overflow-wrap: anywhere;
 }
 
 .message-age {
@@ -666,6 +671,30 @@ div.message-user-info {
   background: rgba(0, 0, 0, 0.4);
 }
 
+.message-vote-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  color: black;
+}
+
+.message-vote {
+  font-size: smaller;
+}
+
+.message-vote-button {
+  margin-left: 4px;
+  -webkit-transition: 0.2s ease;
+  -moz-transition: 0.2s ease;
+  -ms-transition: 0.2s ease;
+  -o-transition: 0.2s ease;
+  transition: 0.2s ease;
+}
+
+.message-vote-button:hover {
+  transform: scale(1.2);
+}
+
 div.clear-messages-wrapper {
   color: #94a89a;
   font-size: small;
@@ -692,8 +721,8 @@ div.clear-messages-wrapper {
 .delete-container .delete {
   position: absolute;
   z-index: 1;
-  bottom: 5px;
-  right: 5px;
+  top: -20px;
+  left: 4px;
 
   background: rgba(0, 0, 0, 0.5);
   color: white;
@@ -707,6 +736,10 @@ div.clear-messages-wrapper {
   transform: scale(0.01);
 
   transition: 0.2s ease;
+}
+
+.delete-container .delete::before {
+  content: '\2715'; /* MULTIPLICATION X */
 }
 
 .delete-container:hover .delete {

@@ -34,12 +34,12 @@ const Board = () => {
     setIsFetchingDelete(true);
 
     // delete message with matching id from database
-    fetch(MESSAGES_ENDPOINT, request).then((res) => {
+    fetch(MESSAGES_ENDPOINT, request).then(() => {
       // iterate all messages
-      const ids = messages && messages.map((message) => message.id);
+      const _ids = messages && messages.map((message) => message._id);
       // wait for animation to complete before deleting
       setTimeout(() => {
-        ids.forEach((id) => dispatch(deleteMessage(id))); // delete all messages
+        _ids.forEach((_id) => dispatch(deleteMessage(_id))); // delete all messages
         setIsDeleting(false); // reset the state for the next time the board is cleared
       }, 500);
 
@@ -81,13 +81,14 @@ const Board = () => {
           (messages.length > 0 ? (
             messages.map((message) => (
               <Confession
-                key={message.id}
-                id={message.id}
+                key={message._id}
+                _id={message._id}
                 date={message.date}
                 username={message.username}
                 age={message.age}
                 university={message.university}
                 text={message.text}
+                score={message.score}
               />
             ))
           ) : (

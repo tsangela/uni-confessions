@@ -13,7 +13,7 @@ const Dialog = () => {
 
   const getMessage = (selectedId) => {
     const selectedMessage = messages.filter(
-      (message) => selectedId === message.id
+      (message) => selectedId === message._id
     );
     return selectedMessage && selectedMessage.length > 0
       ? selectedMessage[0]
@@ -38,7 +38,7 @@ const Dialog = () => {
 
   // retrieve selected message
   const selectedMessage = getMessage(selectedId);
-  const { id, date, username, age, university, text } = selectedMessage;
+  const { _id, date, username, age, university, text } = selectedMessage;
 
   // render dialog with message metadata
   return (
@@ -47,7 +47,7 @@ const Dialog = () => {
       <div className="modal dialog delete-container">
         <div className="title-bar">
           <span
-            id={`${id}_close`}
+            id={`${_id}_close`}
             className="close"
             title="close"
             role="button"

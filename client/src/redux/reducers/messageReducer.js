@@ -21,10 +21,22 @@ const messageReducer = (state = INITIAL_STATE, action) => {
         selectedId: state.selectedId,
       };
 
+    case messageTypes.UPDATE_MESSAGE_SCORE:
+      // update score of message with matching id
+      const messages = state.messages;
+      const message = messages.find((msg) => msg._id === action._id);
+      message.score = action.score;
+      return {
+        messages: [...messages],
+        selectedId: state.selectedId,
+      };
+
     case messageTypes.DELETE_MESSAGE:
       // delete message by id
       return {
-        messages: state.messages.filter((message) => message.id !== action.id),
+        messages: state.messages.filter(
+          (message) => message._id !== action._id
+        ),
         selectedId: state.selectedId,
       };
 
@@ -32,7 +44,7 @@ const messageReducer = (state = INITIAL_STATE, action) => {
       // set id of selected message
       return {
         messages: state.messages,
-        selectedId: action.id,
+        selectedId: action._id,
       };
 
     case messageTypes.DESELECT_MESSAGE:
