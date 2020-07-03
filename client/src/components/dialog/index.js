@@ -68,7 +68,12 @@ const Dialog = () => {
           </span>
         </div>
         <span>{text}</span>
-        <Clipboard text={text} />
+        <Clipboard
+          username={username}
+          age={age}
+          university={university}
+          text={text}
+        />
       </div>
     </div>
   );

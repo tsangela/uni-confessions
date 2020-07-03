@@ -1,4 +1,4 @@
-const { CONNECTION_STRING } = require("./utils/constants");
+const { CONNECTION_STRING, DB_NAME } = require("./utils/constants");
 const { isValidItem } = require("./utils/helpers");
 const MongoClient = require("mongodb").MongoClient;
 
@@ -6,7 +6,6 @@ const express = require("express");
 const router = express.Router();
 
 // mongo
-const DB_NAME = "messageBoard";
 const COLL_NAME = "messages";
 const STRING_SORTED_KEYS = "_id,age,date,score,text,university,username";
 

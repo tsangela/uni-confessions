@@ -5,17 +5,14 @@ import Emoji from '../common/emoji';
 const CLIPBOARD_EMOJI = '📋';
 const CHECKMARK_EMOJI = '✅';
 
-const Clipboard = ({ text }) => {
+const Clipboard = ({ username, age, university, text }) => {
   const [isCopied, setIdCopied] = useState(false);
 
-  const toFormattedText = (username, age, university, text) => {
-    // todo
-  };
-
+  const toFormattedText = () => `${username} (${age}) [${university}]\n${text}`;
   const handleClick = () => {
     // copy to clipboard
     navigator.clipboard
-      .writeText(text)
+      .writeText(toFormattedText())
       .then(() => {
         // good!
       })
@@ -64,5 +61,8 @@ const Clipboard = ({ text }) => {
 export default Clipboard;
 
 Clipboard.propTypes = {
+  username: PropTypes.string.isRequired,
+  age: PropTypes.string.isRequired,
+  university: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
 };
