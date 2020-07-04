@@ -15,7 +15,8 @@ const messageReducer = (state = INITIAL_STATE, action) => {
       };
 
     case messageTypes.ADD_MESSAGE:
-      // add message to beginning of list
+      // add message to end of list
+      // messages are displaced in reverse order
       return {
         messages: [...state.messages, action.message],
         selectedId: state.selectedId,

@@ -11,7 +11,7 @@ const RandomButton = ({ route }) => {
   const messages = useSelector((state) => state.messageReducer.messages);
   const dispatch = useDispatch();
   const history = useHistory();
-  const { path, name, icon } = route;
+  const { name, icon } = route;
 
   const handleClick = () => {
     // no messages to choose from
@@ -42,12 +42,12 @@ const RandomButton = ({ route }) => {
   return (
     <div
       role="button"
-      aria-label="random confession"
+      aria-label="open random confession"
       tabIndex={0}
       onClick={handleClick}
       onKeyDown={handleKey}
     >
-      <span id={name} className="nav-button" aria-label={name} title={name}>
+      <span id={name} className="nav-button" title={name}>
         <FontAwesomeIcon icon={icon} />
         <span className={name} />
       </span>

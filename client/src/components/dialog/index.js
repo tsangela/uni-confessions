@@ -1,23 +1,15 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import { deselectMessage } from '../../redux/actions/messageActions';
 import Clipboard from './clipboard';
 
 const Dialog = () => {
-  const [isCopied, setIsCopied] = useState(false);
   const messages = useSelector((state) => state.messageReducer.messages);
   const selectedId = useSelector((state) => state.messageReducer.selectedId);
   const dispatch = useDispatch();
-
-  const handleCopyAnimation = () => {
-    setIsCopied(true);
-    setTimeout(() => {
-      setIsCopied(false);
-    }, 1000);
-  };
 
   const getMessage = (selectedId) => {
     const selectedMessage = messages.filter(
@@ -52,7 +44,7 @@ const Dialog = () => {
   return (
     <div className="center-wrapper dialog-container">
       <div className="dialog-overlay" onClick={handleClose} />
-      <div className="modal dialog delete-container">
+      <div className="modal dialog">
         <div className="title-bar">
           <span
             id={`${_id}_close`}
@@ -75,8 +67,6 @@ const Dialog = () => {
               age={age}
               university={university}
               text={text}
-              handleCopyAnimation={handleCopyAnimation}
-              isCopied={isCopied}
             />
           </div>
           <span className={`message-university ${university}`}>

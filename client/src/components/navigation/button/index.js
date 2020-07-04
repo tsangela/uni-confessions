@@ -7,7 +7,12 @@ const NavButton = ({ route }) => {
   const { path, name, icon } = route;
   return (
     <NavLink to={path} role="button">
-      <span id={name} className="nav-button" aria-label={name} title={name}>
+      <span
+        id={name}
+        className="nav-button"
+        aria-label={`go to ${path}`}
+        title={name}
+      >
         <FontAwesomeIcon icon={icon} />
         <span className={name} />
       </span>

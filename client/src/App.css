@@ -312,8 +312,9 @@ dialog
 }
 
 .dialog {
+  position: relative;
   background: white;
-  max-width: 350px;
+  width: 75%;
   max-height: 50%;
   overflow: scroll;
   box-shadow: 2px 2px 22px rgba(0, 0, 0, 0.2);
@@ -329,7 +330,7 @@ dialog
   background: linear-gradient(to right top, #d94560, #e29779) no-repeat fixed;
 }
 
-.delete-container .close {
+.dialog .close {
   float: right;
   top: 10px;
   right: 10px;
@@ -353,7 +354,7 @@ dialog
   transition: 0.2s ease;
 }
 
-.delete-container .close::before {
+.dialog .close::before {
   content: 'x';
 }
 
@@ -773,7 +774,7 @@ div.clear-messages-wrapper {
 
 @media only screen and (min-width: 450px) {
   span.nav-button {
-    padding: 12px 20px;
+    padding: 8px 20px;
   }
 
   span.nav-button span.home::after {
