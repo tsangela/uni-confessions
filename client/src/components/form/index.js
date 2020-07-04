@@ -90,7 +90,7 @@ const Form = () => {
             id="username"
             name="username"
             placeholder="ex: anonymous"
-            maxLength="50"
+            maxLength="20"
             onBlur={handleInput}
           />
         </div>

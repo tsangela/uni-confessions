@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { PropTypes } from 'prop-types';
 import Emoji from '../common/emoji';
-
-const CLIPBOARD_EMOJI = '📋';
-const CHECKMARK_EMOJI = '✅';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faClipboard as faClipboardRegular } from '@fortawesome/free-regular-svg-icons';
+import { faClipboardCheck } from '@fortawesome/free-solid-svg-icons';
 
 const Clipboard = ({ username, age, university, text }) => {
   const [isCopied, setIdCopied] = useState(false);
@@ -45,13 +45,13 @@ const Clipboard = ({ username, age, university, text }) => {
       onKeyDown={handleKey}
     >
       {isCopied ? (
-        <div className="copied">
-          <Emoji input={CHECKMARK_EMOJI} />
-          <i className="copied-text"> copied!</i>
-        </div>
+        <span className="copied">
+          <FontAwesomeIcon icon={faClipboardCheck} />
+          <span className="copied-text" />
+        </span>
       ) : (
         <span className="clipboard">
-          <Emoji input={CLIPBOARD_EMOJI} />
+          <FontAwesomeIcon icon={faClipboardRegular} />
         </span>
       )}
     </span>
