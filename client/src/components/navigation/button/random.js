@@ -4,13 +4,14 @@ import { withRouter } from 'react-router';
 import { useHistory } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
 import { selectMessage } from '../../../redux/actions/messageActions';
-import { getName, paths } from '../../../resources/paths';
+import { routes } from '../../../resources/routes';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const RandomButton = ({ path }) => {
+const RandomButton = ({ route }) => {
   const messages = useSelector((state) => state.messageReducer.messages);
   const dispatch = useDispatch();
   const history = useHistory();
-  const name = getName(path);
+  const { path, name, icon } = route;
 
   const handleClick = () => {
     // no messages to choose from
@@ -24,7 +25,7 @@ const RandomButton = ({ path }) => {
     // validate message
     if (messages && Array.isArray(messages) && messages[index]) {
       // redirect to message board
-      history.push(paths.HOME);
+      history.push(routes.RANDOM.path);
 
       // select message
       dispatch(selectMessage(messages[index]._id));
@@ -46,8 +47,9 @@ const RandomButton = ({ path }) => {
       onClick={handleClick}
       onKeyDown={handleKey}
     >
-      <span id={path} className="nav-button random-button" aria-label={path}>
-        {name}
+      <span id={name} className="nav-button" aria-label={name} title={name}>
+        <FontAwesomeIcon icon={icon} />
+        <span className={name} />
       </span>
     </div>
   );
@@ -56,5 +58,5 @@ const RandomButton = ({ path }) => {
 export default withRouter(RandomButton);
 
 RandomButton.propTypes = {
-  path: PropTypes.string.isRequired,
+  route: PropTypes.object.isRequired,
 };

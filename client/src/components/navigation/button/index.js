@@ -1,14 +1,15 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
-import { getName } from '../../../resources/paths';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const NavButton = ({ path }) => {
-  const name = getName(path);
+const NavButton = ({ route }) => {
+  const { path, name, icon } = route;
   return (
     <NavLink to={path} role="button">
-      <span id={path} className="nav-button" aria-label={path}>
-        {name}
+      <span id={name} className="nav-button" aria-label={name} title={name}>
+        <FontAwesomeIcon icon={icon} />
+        <span className={name} />
       </span>
     </NavLink>
   );
@@ -17,5 +18,5 @@ const NavButton = ({ path }) => {
 export default NavButton;
 
 NavButton.propTypes = {
-  path: PropTypes.string.isRequired,
+  route: PropTypes.object.isRequired,
 };

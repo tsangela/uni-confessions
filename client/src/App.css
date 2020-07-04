@@ -153,14 +153,16 @@ li {
 .nav {
   z-index: 1;
   width: 100%;
-  padding: 15px 0 20px 0;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+  height: 60px;
   position: fixed;
   top: 0;
   white-space: nowrap;
   overflow-x: scroll;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 
   background: linear-gradient(to right top, #f2617c, #f0b299) no-repeat fixed;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.15);
@@ -176,9 +178,10 @@ li {
   margin-right: 10px;
 }
 
-.nav-button {
+span.nav-button {
+  cursor: pointer;
   flex: initial;
-  padding: 10px 20px;
+  padding: 12px;
   border: 1px solid transparent;
   border-radius: 100px;
 
@@ -201,10 +204,6 @@ span.nav-button:active {
   color: #e29779;
 }
 
-.random-button {
-  cursor: pointer;
-}
-
 [class^='center-wrapper'] {
   display: flex;
   flex-direction: column;
@@ -215,7 +214,6 @@ span.nav-button:active {
 .modal {
   min-width: 200px;
   max-width: 400px;
-  width: 80vw;
   margin: 20px;
   background: #fbf7f4;
   padding: 30px;
@@ -368,18 +366,20 @@ dialog
   transform: scale(1.1);
 }
 
-.copy-to-clipboard {
-  cursor: pointer;
+.clipboard-button {
   margin-left: 5px;
   color: #e29779;
+
   display: inline-flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 }
 
-.clipboard {
+.copy {
+  cursor: pointer;
   opacity: 0.4;
+
   -webkit-transition: 0.2s ease;
   -moz-transition: 0.2s ease;
   -ms-transition: 0.2s ease;
@@ -387,7 +387,7 @@ dialog
   transition: 0.2s ease;
 }
 
-.clipboard:hover {
+.copy:hover {
   opacity: 1;
 }
 
@@ -771,10 +771,32 @@ div.clear-messages-wrapper {
   animation: slideFadeOut 0.5s ease forwards;
 }
 
+@media only screen and (min-width: 450px) {
+  span.nav-button {
+    padding: 12px 20px;
+  }
+
+  span.nav-button span.home::after {
+    content: ' home';
+  }
+
+  span.nav-button span.about::after {
+    content: ' about';
+  }
+
+  span.nav-button span.random::after {
+    content: ' random';
+  }
+}
+
 @media only screen and (min-width: 600px) {
   .center-wrapper {
     flex-direction: row;
     align-items: stretch;
+  }
+
+  .modal {
+    width: 100%;
   }
 
   .dialog-container {

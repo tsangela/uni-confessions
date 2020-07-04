@@ -1,17 +1,17 @@
 import React from 'react';
 import { Route } from 'react-router';
 import NavButton from '../button/index';
-import { paths } from '../../../resources/paths';
+import { routes } from '../../../resources/routes';
 import RandomButton from '../button/random';
 
 const NavBar = () => {
   return (
     <div id="nav-bar" className="nav">
-      <NavButton path={paths.HOME} />
-      <NavButton path={paths.ABOUT} />
+      <NavButton route={routes.HOME} />
+      <NavButton route={routes.ABOUT} />
       <Route
-        path={paths.HOME}
-        render={(props) => <RandomButton {...props} path={paths.RANDOM} />}
+        path={routes.RANDOM.path}
+        render={(props) => <RandomButton {...props} route={routes.RANDOM} />}
       />
     </div>
   );
