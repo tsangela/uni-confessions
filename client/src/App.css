@@ -159,6 +159,8 @@ li {
   justify-content: center;
   position: fixed;
   top: 0;
+  white-space: nowrap;
+  overflow-x: scroll;
 
   background: linear-gradient(to right top, #f2617c, #f0b299) no-repeat fixed;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.15);
@@ -192,9 +194,9 @@ li {
   transition: 0.2s ease;
 }
 
-.nav-button:hover,
-.nav-button:focus,
-.nav-button:active {
+span.nav-button:hover,
+span.nav-button:focus,
+span.nav-button:active {
   background-color: white;
   color: #e29779;
 }
@@ -212,7 +214,8 @@ li {
 
 .modal {
   min-width: 200px;
-  width: 350px;
+  max-width: 400px;
+  width: 80vw;
   margin: 20px;
   background: #fbf7f4;
   padding: 30px;
@@ -223,7 +226,6 @@ li {
 .message {
   position: relative;
   padding: 5px;
-  margin: 5px 0;
   border-radius: 0 5px 0 5px;
   border: 1px solid #94a89a;
   border-top: 20px solid #94a89a;
@@ -313,9 +315,9 @@ dialog
 
 .dialog {
   background: white;
+  max-width: 350px;
   max-height: 50%;
   overflow: scroll;
-  /* border-top: 30px solid #94a89a; */
   box-shadow: 2px 2px 22px rgba(0, 0, 0, 0.2);
 
   animation: 0.3s zoomFadeIn ease;
@@ -435,7 +437,7 @@ about
 }
 
 .message-about {
-  font-size: medium;
+  margin: 10px 0;
   cursor: crosshair;
   line-height: 20px;
 }
@@ -578,7 +580,6 @@ message board
 #modal-board {
   background: #fbf7f4;
   overflow-y: scroll;
-  margin-left: 0;
   min-height: 450px;
 }
 
@@ -715,6 +716,7 @@ div.clear-messages-wrapper {
 }
 
 .delete-container {
+  margin: 5px 0;
   position: relative;
 }
 
@@ -778,6 +780,7 @@ div.clear-messages-wrapper {
   }
 
   #modal-board {
+    margin-left: 0;
     height: 450px;
   }
 

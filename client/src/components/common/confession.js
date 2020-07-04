@@ -17,7 +17,7 @@ import {
 
 const UP = 'UP';
 const DOWN = 'DOWN';
-const Spinner = (
+const spinner = (
   <FontAwesomeIcon icon={faSpinner} className="spinner" aria-label="loading" />
 );
 
@@ -127,7 +127,7 @@ const Confession = ({ _id, date, username, age, university, text, score }) => {
           <span className="message-vote">{score}</span>
           <span ref={voteUpRef} className="message-vote-button">
             {isFetchingUp ? (
-              Spinner
+              spinner
             ) : (
               <FontAwesomeIcon
                 icon={faArrowAltCircleUp}
@@ -140,7 +140,7 @@ const Confession = ({ _id, date, username, age, university, text, score }) => {
           </span>
           <span ref={voteDownRef} className="message-vote-button">
             {isFetchingDown ? (
-              Spinner
+              spinner
             ) : (
               <FontAwesomeIcon
                 icon={faArrowAltCircleDown}

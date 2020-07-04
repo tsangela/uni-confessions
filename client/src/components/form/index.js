@@ -16,28 +16,26 @@ const DEFAULT_STATE = {
 
 const Form = () => {
   const [isFetching, setIsFetching] = useState(false);
-  const [message, setMessage] = useState(DEFAULT_STATE);
+  const [inputs, setInputs] = useState(DEFAULT_STATE);
   const dispatch = useDispatch();
   const formRef = React.useRef(null);
+  const textareaRef = React.useRef(null);
 
   const clearForm = () => {
     // clear form
     formRef.current.reset();
     // reset state
-    setMessage(DEFAULT_STATE);
+    setInputs(DEFAULT_STATE);
   };
 
   const handleInput = (event) => {
     const input = { [event.target.name]: event.target.value };
-
-    setMessage((prevState) => {
-      return { ...prevState, ...input };
-    });
+    setInputs((prevState) => ({ ...prevState, ...input }));
   };
 
   const handleSubmit = () => {
     // validate input
-    const { username, age, university, text } = message;
+    const { username, age, university, text } = inputs;
     if (!username || age === NONE || university === NONE || !text) {
       alert('please ensure that all fields are filled in 😊');
       return;
@@ -70,8 +68,8 @@ const Form = () => {
       .then(() => setIsFetching(false))
       .catch((err) => console.error(err));
 
-    // clear form
-    clearForm();
+    // clear confession input only
+    textareaRef.current.value = '';
   };
 
   const handleKey = (event, fn) => {
@@ -102,7 +100,7 @@ const Form = () => {
             <select
               id="age"
               name="age"
-              value={message.age}
+              value={inputs.age}
               onChange={handleInput}
             >
               <option value={NONE}>{NONE}</option>
@@ -118,7 +116,7 @@ const Form = () => {
             <select
               id="university"
               name="university"
-              value={message.university}
+              value={inputs.university}
               onChange={handleInput}
             >
               <option value={NONE}>{NONE}</option>
@@ -134,6 +132,7 @@ const Form = () => {
           <label htmlFor="text">confession</label>
           <textarea
             id="text"
+            ref={textareaRef}
             name="text"
             className="text-box"
             placeholder="type here..."
