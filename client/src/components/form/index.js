@@ -64,9 +64,16 @@ const Form = () => {
     // add message to database and update redux state
     fetch(MESSAGES_ENDPOINT, request)
       .then((res) => res.json())
-      .then((res) => res && dispatch(addMessage(newMessage)))
-      .then(() => setIsFetching(false))
-      .catch((err) => console.error(err));
+      .then((res) => {
+        res.errorMessage
+          ? alert(res.errorMessage)
+          : dispatch(addMessage(newMessage));
+        setIsFetching(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        alert('Something bad happened, please try again later!');
+      });
 
     // clear confession input only
     textareaRef.current.value = '';

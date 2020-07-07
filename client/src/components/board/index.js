@@ -12,13 +12,21 @@ const Board = () => {
   const [isDeleting, setIsDeleting] = useState(false);
   const [isFetchingGet, setIsFetchingGet] = useState(true);
   const [isFetchingDelete, setIsFetchingDelete] = useState(false);
+  const [isSuccessDelete, setIsSuccessDelete] = useState(false);
 
   useEffect(() => {
     fetch(MESSAGES_ENDPOINT)
       .then((res) => res.json())
-      .then((res) => res && dispatch(getMessages(res)))
-      .then(() => setIsFetchingGet(false))
-      .catch((err) => console.error(err));
+      .then((res) => {
+        res.errorMessage
+          ? alert('Something bad happened, please try again later!')
+          : dispatch(getMessages(res));
+        setIsFetchingGet(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        alert('Something bad happened, please try again later!');
+      });
   }, [dispatch]);
 
   const handleClick = () => {
@@ -34,15 +42,26 @@ const Board = () => {
     setIsFetchingDelete(true);
 
     // delete message with matching id from database
-    fetch(MESSAGES_ENDPOINT, request).then(() => {
-      // iterate all messages
-      const _ids = messages && messages.map((message) => message._id);
-      // wait for animation to complete before deleting
-      setTimeout(() => {
-        _ids.forEach((_id) => dispatch(deleteMessage(_id))); // delete all messages
-        setIsDeleting(false); // reset the state for the next time the board is cleared
-      }, 500);
+    fetch(MESSAGES_ENDPOINT, request).then((res) => {
+      if (res.ok) {
+        // iterate all messages
+        const _ids = messages && messages.map((message) => message._id);
 
+        // wait for animation to complete before deleting
+        setTimeout(() => {
+          _ids.forEach((_id) => dispatch(deleteMessage(_id))); // delete all messages
+          setIsDeleting(false); // reset the state for the next time the board is cleared
+        }, 500);
+
+        // successfully deleted
+        setIsSuccessDelete(true);
+      } else {
+        // something went wrong
+        console.log(res);
+        alert(`Oops! Unable clear all messages -- please try again later!`);
+      }
+
+      // fetch status
       setIsFetchingDelete(false);
     });
   };
@@ -71,7 +90,9 @@ const Board = () => {
       </div>
       <div
         className={`message-container${
-          isDeleting && messages.length !== 0 ? ' deleting' : ''
+          isDeleting && isSuccessDelete && messages.length !== 0
+            ? ' deleting'
+            : ''
         }`}
       >
         {isFetchingGet ? (
