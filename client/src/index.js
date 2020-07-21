@@ -7,8 +7,10 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import getReducers from './redux/reducers/index';
 
+const middleware = process.env.NODE_ENV !== 'production' ? [logger] : [];
+
 ReactDOM.render(
-  <Provider store={createStore(getReducers(), applyMiddleware(logger))}>
+  <Provider store={createStore(getReducers(), applyMiddleware(...middleware))}>
     <App />
   </Provider>,
   document.getElementById('root')

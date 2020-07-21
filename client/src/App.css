@@ -213,7 +213,7 @@ span.nav-button:active {
 
 .modal {
   min-width: 200px;
-  max-width: 400px;
+  width: 400px;
   margin: 20px;
   background: #fbf7f4;
   padding: 30px;
@@ -489,6 +489,18 @@ about
 /*
 form
 */
+
+form#confession-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-content: space-between;
+  height: 100%;
+}
+
+.form-container {
+  height: 100%;
+}
 
 .center-wrapper-button {
   flex-direction: row;
@@ -794,10 +806,6 @@ div.clear-messages-wrapper {
   .center-wrapper {
     flex-direction: row;
     align-items: stretch;
-  }
-
-  .modal {
-    width: 100%;
   }
 
   .dialog-container {

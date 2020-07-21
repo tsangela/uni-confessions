@@ -88,64 +88,66 @@ const Form = () => {
 
   return (
     <div id="modal-form" className="modal">
-      <h1>tell me a secret</h1>
       <form ref={formRef} id="confession-form">
-        <div id="form-name" className="form-group">
-          <label htmlFor="username">username</label>
-          <input
-            type="text"
-            id="username"
-            name="username"
-            placeholder="ex: anonymous"
-            maxLength="20"
-            onBlur={handleInput}
-          />
-        </div>
-        <div className="form-inline">
-          <div id="form-age" className="form-group">
-            <label htmlFor="age">age</label>
-            <select
-              id="age"
-              name="age"
-              value={inputs.age}
-              onChange={handleInput}
-            >
-              <option value={NONE}>{NONE}</option>
-              {options.ageRanges.map((age) => (
-                <option key={age} value={age}>
-                  {age}
-                </option>
-              ))}
-            </select>
+        <h1>tell me a secret</h1>
+        <div className="form-container">
+          <div id="form-name" className="form-group">
+            <label htmlFor="username">username</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              placeholder="ex: anonymous"
+              maxLength="20"
+              onBlur={handleInput}
+            />
           </div>
-          <div id="form-university" className="form-group">
-            <label htmlFor="university">university</label>
-            <select
-              id="university"
-              name="university"
-              value={inputs.university}
-              onChange={handleInput}
-            >
-              <option value={NONE}>{NONE}</option>
-              {options.universities.map((uni) => (
-                <option key={uni} value={uni}>
-                  {uni}
-                </option>
-              ))}
-            </select>
+          <div className="form-inline">
+            <div id="form-age" className="form-group">
+              <label htmlFor="age">age</label>
+              <select
+                id="age"
+                name="age"
+                value={inputs.age}
+                onChange={handleInput}
+              >
+                <option value={NONE}>{NONE}</option>
+                {options.ageRanges.map((age) => (
+                  <option key={age} value={age}>
+                    {age}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div id="form-university" className="form-group">
+              <label htmlFor="university">university</label>
+              <select
+                id="university"
+                name="university"
+                value={inputs.university}
+                onChange={handleInput}
+              >
+                <option value={NONE}>{NONE}</option>
+                {options.universities.map((uni) => (
+                  <option key={uni} value={uni}>
+                    {uni}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
-        </div>
-        <div className="form-group">
-          <label htmlFor="text">confession</label>
-          <textarea
-            id="text"
-            ref={textareaRef}
-            name="text"
-            className="text-box"
-            placeholder="type here..."
-            maxLength="600"
-            onBlur={handleInput}
-          />
+          <div className="form-group">
+            <label htmlFor="text">confession</label>
+            <textarea
+              id="text"
+              ref={textareaRef}
+              name="text"
+              className="text-box"
+              placeholder="type here..."
+              maxLength="600"
+              onBlur={handleInput}
+            />
+          </div>
         </div>
         <div className="center-wrapper-button">
           <div
