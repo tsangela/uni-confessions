@@ -1,8 +1,9 @@
-const { CONNECTION_STRING, DB_NAME } = require("./utils/constants");
-const { isValidItem } = require("./utils/helpers");
-const MongoClient = require("mongodb").MongoClient;
-
 const express = require("express");
+const MongoClient = require("mongodb").MongoClient;
+const { CONNECTION_STRING, DB_NAME } = require("./utils/constants");
+const { isValidMessage, clean } = require("./utils/helpers");
+
+// express
 const router = express.Router();
 
 // mongo
@@ -41,21 +42,26 @@ MongoClient.connect(
 
     /* POST - add message. */
     router.post("/", (req, res, next) => {
-      const message = req.body;
+      // request body
+      const body = req.body;
 
-      // validate message model
-      if (!isValidItem(message, STRING_SORTED_KEYS)) {
+      // validate message
+      if (!isValidMessage(body, STRING_SORTED_KEYS)) {
         // 400 Bad Request
         return res
           .status(400)
           .json({ errorMessage: "Invalid message format." });
       }
 
+      // trim whitespaces and run filter
+      const text = clean(body.text);
+      const message = { ...body, text };
+
       // insert into database
       messagesCollection
         .insertOne(message)
         // 201 Created
-        .then((message) => res.status(201).json(message))
+        .then(() => res.status(201).json(message))
         // 500 Internal Server Error
         .catch((err) => res.status(500).json({ errorMessage: err.message }));
     });
@@ -65,13 +71,15 @@ MongoClient.connect(
       const _id = req.params._id;
       const body = req.body;
       const score = body && parseInt(body.score);
-
-      // update message in database
       if (typeof score === "number") {
+        // update message in database
         messagesCollection
           .updateOne({ _id }, { $set: { score } })
-          .then((message) => res.status(200).json({ message }))
+          .then(() => res.status(200).json({ score }))
           .catch((err) => res.status(500).json({ errorMessage: err.message }));
+      } else {
+        // 400 Bad Request
+        return res.status(400).json({ errorMessage: "Invalid score." });
       }
     });
 

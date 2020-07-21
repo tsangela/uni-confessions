@@ -16,6 +16,7 @@
     "jade": "~1.11.0",
     "mongodb": "^3.5.9",
     "morgan": "~1.9.1",
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.4",
+    "profanity-filter": "^0.2.1"
   }
 }

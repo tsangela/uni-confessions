@@ -24,7 +24,6 @@ const Board = () => {
         setIsFetchingGet(false);
       })
       .catch((err) => {
-        console.error(err);
         alert('Something bad happened, please try again later!');
       });
   }, [dispatch]);
@@ -57,7 +56,6 @@ const Board = () => {
         setIsSuccessDelete(true);
       } else {
         // something went wrong
-        console.log(res);
         alert(`Oops! Unable clear all messages -- please try again later!`);
       }
 

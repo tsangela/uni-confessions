@@ -58,7 +58,9 @@ const Confession = ({ _id, date, username, age, university, text, score }) => {
     fetch(`${MESSAGES_ENDPOINT}/${_id}`, request)
       // wait for delete animation to finish
       .then(() => setTimeout(() => dispatch(deleteMessage(_id)), 500))
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        alert('Something bad happened, please try again later!');
+      });
   };
 
   const handleVote = (_id, direction) => {
@@ -73,7 +75,7 @@ const Confession = ({ _id, date, username, age, university, text, score }) => {
     const request = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ score: score }),
+      body: JSON.stringify({ score }),
     };
 
     // start fetching
@@ -81,9 +83,12 @@ const Confession = ({ _id, date, username, age, university, text, score }) => {
 
     // update message with score
     fetch(`${MESSAGES_ENDPOINT}/${_id}/score`, request)
-      .then(() => dispatch(updateMessageScore(_id, score)))
+      .then((res) => res.json())
+      .then((res) => dispatch(updateMessageScore(_id, res.score)))
       .then(() => setIsFetching(false))
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        alert('Something bad happened, please try again later!');
+      });
   };
 
   const handleKey = (event, fn, _id) => {

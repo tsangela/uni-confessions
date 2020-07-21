@@ -19,7 +19,6 @@ const Form = () => {
   const [inputs, setInputs] = useState(DEFAULT_STATE);
   const dispatch = useDispatch();
   const formRef = React.useRef(null);
-  const textareaRef = React.useRef(null);
 
   const clearForm = () => {
     // clear form
@@ -30,12 +29,15 @@ const Form = () => {
 
   const handleInput = (event) => {
     const input = { [event.target.name]: event.target.value };
-    setInputs((prevState) => ({ ...prevState, ...input }));
+    setInputs((prevInputs) => ({ ...prevInputs, ...input }));
   };
 
   const handleSubmit = () => {
     // validate input
-    const { username, age, university, text } = inputs;
+    let { username, age, university, text } = inputs;
+    username = username.trim();
+    text = text.trim();
+    setInputs((prevInputs) => ({ ...prevInputs, username, text }));
     if (!username || age === NONE || university === NONE || !text) {
       alert('please ensure that all fields are filled in 😊');
       return;
@@ -64,19 +66,16 @@ const Form = () => {
     // add message to database and update redux state
     fetch(MESSAGES_ENDPOINT, request)
       .then((res) => res.json())
-      .then((res) => {
-        res.errorMessage
-          ? alert(res.errorMessage)
-          : dispatch(addMessage(newMessage));
-        setIsFetching(false);
-      })
+      .then((res) =>
+        res.errorMessage ? alert(res.errorMessage) : dispatch(addMessage(res))
+      )
+      .then(() => setIsFetching(false))
       .catch((err) => {
-        console.error(err);
         alert('Something bad happened, please try again later!');
       });
 
     // clear confession input only
-    textareaRef.current.value = '';
+    setInputs((prevInputs) => ({ ...prevInputs, text: '' }));
   };
 
   const handleKey = (event, fn) => {
@@ -99,7 +98,8 @@ const Form = () => {
               name="username"
               placeholder="ex: anonymous"
               maxLength="20"
-              onBlur={handleInput}
+              onChange={handleInput}
+              value={inputs.username}
             />
           </div>
           <div className="form-inline">
@@ -108,7 +108,7 @@ const Form = () => {
               <select
                 id="age"
                 name="age"
-                value={inputs.age}
+                defaultValue={inputs.age}
                 onChange={handleInput}
               >
                 <option value={NONE}>{NONE}</option>
@@ -124,7 +124,7 @@ const Form = () => {
               <select
                 id="university"
                 name="university"
-                value={inputs.university}
+                defaultValue={inputs.university}
                 onChange={handleInput}
               >
                 <option value={NONE}>{NONE}</option>
@@ -140,12 +140,12 @@ const Form = () => {
             <label htmlFor="text">confession</label>
             <textarea
               id="text"
-              ref={textareaRef}
               name="text"
               className="text-box"
               placeholder="type here..."
               maxLength="600"
-              onBlur={handleInput}
+              onChange={handleInput}
+              value={inputs.text}
             />
           </div>
         </div>
