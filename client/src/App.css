@@ -315,6 +315,7 @@ dialog
   position: relative;
   background: white;
   width: 75%;
+  max-width: 400px;
   max-height: 50%;
   overflow: scroll;
   box-shadow: 2px 2px 22px rgba(0, 0, 0, 0.2);
