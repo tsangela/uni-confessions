@@ -157,7 +157,6 @@ li {
   position: fixed;
   top: 0;
   white-space: nowrap;
-  overflow-x: scroll;
 
   display: flex;
   flex-direction: row;
